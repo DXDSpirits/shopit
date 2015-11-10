@@ -44,7 +44,7 @@ var AUTOPREFIXER_BROWSERS = [
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
     .pipe(reload({stream: true, once: true}))
-    .pipe($.jshint())
+    .pipe($.jshint({strict: false}))
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
@@ -84,11 +84,10 @@ gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
     'app/styles/*.scss',
-    'app/styles/**/*.css',
-    'app/styles/components/components.scss'
+    'app/styles/**/*.css'
   ])
     .pipe($.sourcemaps.init())
-    .pipe($.changed('.tmp/styles', {extension: '.css'}))
+    // .pipe($.changed('.tmp/styles', {extension: '.css'}))
     .pipe($.sass({
       precision: 10,
       onError: console.error.bind(console, 'Sass error:')
@@ -130,7 +129,7 @@ gulp.task('html', function () {
     .pipe(assets.restore())
     .pipe($.useref())
     // Update production Style Guide paths
-    .pipe($.replace('components/components.css', 'components/main.min.css'))
+    // .pipe($.replace('components/components.css', 'components/main.min.css'))
     // Minify any HTML
     .pipe($.if('*.html', $.minifyHtml()))
     // Output files
@@ -175,7 +174,8 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  // runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
