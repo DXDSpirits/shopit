@@ -1,4 +1,18 @@
 
 #view-brand {
-    
+    .brand-wrapper {
+        .cover {
+            padding-top: 50%;
+        }
+        .brand-logo {
+            height: 100px;
+            width: 100px;
+        }
+    }
+    .brand-products, .brand-topics {}
+    .media-item {
+        .img {
+            padding-top: 50%;
+        }
+    }
 }

@@ -32,31 +32,62 @@
 </head>
 
 <body>
-    
+
+    <div id="apploader" class="invisible">
+        <div class="loader">
+            <div class="loading-sprite"></div>
+            <p class="ajax-error hidden">网络不给力啊，请稍后再试！</p>
+        </div>
+    </div>
+
     <div class="views-wrapper">
         <section class="view view-hidden" id="view-product">
             <div class="wrapper">
                 <div class="product-wrapper"></div>
-                <div class="products-list">
+                <div class="media-list">
                     <div class="similar-products"></div>
                     <div class="brand-products"></div>
                 </div>
             </div>
         </section>
         <section class="view view-hidden" id="view-brand">
-            <div class="wrapper"></div>
+            <div class="wrapper">
+                <div class="brand-wrapper"></div>
+                <div class="media-list">
+                    <div class="brand-topics"></div>
+                    <div class="brand-products"></div>
+                </div>
+            </div>
         </section>
-        <section class="view view-hidden" id="view-compaign">
-            <div class="wrapper"></div>
+        <section class="view view-hidden" id="view-topic">
+            <div class="wrapper">
+                <div class="topic-wrapper"></div>
+                <div class="topic-products"></div>
+                <div class="topic-comments"></div>
+            </div>
         </section>
     </div>
 
     <script id="template-product-detail" type="text/x-handlebars-template">
         <div class="img cover" data-bg-src="{{apiFullpath img}}"></div>
+        <div class="img brand-logo" data-bg-src="{{apiFullpath brand.logo}}" data-route="brand/{{brand.id}}"></div>
         <div class="name">{{name}}</div>
         <button class="btn btn-primary">￥{{price}} 购买</button>
         <div class="text-center">商品详情</div>
-        <div class="description">{{description}}</div>
+        <div class="description">{{{description}}}</div>
+    </script>
+
+    <script id="template-brand-detail" type="text/x-handlebars-template">
+        <div class="img cover" data-bg-src="{{apiFullpath img}}"></div>
+        <div class="img brand-logo" data-bg-src="{{apiFullpath logo}}"></div>
+        <div class="name">{{name}}</div>
+        <div class="description">{{{description}}}</div>
+        <button class="btn btn-primary">查看品牌店铺</button>
+    </script>
+
+    <script id="template-topic-detail" type="text/x-handlebars-template">
+        <div class="img cover" data-bg-src="{{apiFullpath img}}"></div>
+        <div class="description">{{{description}}}</div>
     </script>
 
     <!-- build:js scripts/vendor.min.js -->
@@ -79,10 +110,10 @@
     <script src="scripts/router.js"></script>
     <script src="scripts/view-product.js"></script>
     <script src="scripts/view-brand.js"></script>
-    <script src="scripts/view-compaign.js"></script>
+    <script src="scripts/view-topic.js"></script>
     <script>App.start();</script>
     <!-- endbuild -->
-    
+
 </body>
 
 </html>

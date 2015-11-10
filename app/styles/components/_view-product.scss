@@ -4,11 +4,13 @@
         .cover {
             padding-top: 120%;
         }
+        .brand-logo {
+            height: 100px;
+            width: 100px;
+        }
     }
-    .similar-products, .brand-products {
-        
-    }
-    .product-list-item {
+    .similar-products, .brand-products {}
+    .media-item {
         width: 100px;
         .img {
             padding-top: 150%;

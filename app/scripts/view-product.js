@@ -1,5 +1,7 @@
 (function() {
 
+    var mediaSize = 1;
+
     var ProductModel = Amour.Model.extend({
         url: Amour.APIRoot + 'beacon/data/getItemBycityName.do'
     });
@@ -13,14 +15,17 @@
     });
 
     var ProductView = Amour.ModelView.extend({
-        className: 'product-detail',
         template: App.getTemplate('product-detail')
     });
 
-    var ProductsListView = Amour.CollectionView.extend({
+    var MediasListView = Amour.CollectionView.extend({
         ModelView: Amour.ModelView.extend({
-            className: 'product-list-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div>{{name}}</div><div>{{price}}</div>'
+            events: { 'click': 'viewDetail' },
+            className: 'media-item',
+            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div>{{name}}</div><div>{{price}}</div>',
+            viewDetail: function() {
+                App.router.navigate('product/' + this.model.id);
+            }
         })
     });
 
@@ -34,11 +39,11 @@
                     model: this.product,
                     el: this.$('.product-wrapper')
                 }),
-                similarProducts: new ProductsListView({
+                similarProducts: new MediasListView({
                     collection: this.similarProducts,
                     el: this.$('.similar-products')
                 }),
-                brandProducts: new ProductsListView({
+                brandProducts: new MediasListView({
                     collection: this.brandProducts,
                     el: this.$('.brand-products')
                 })
@@ -52,19 +57,12 @@
                 success: function(model) {
                     var brandId = self.product.get('brand').id;
                     self.brandProducts.fetch({
-                        data: {
-                            id: brandId,
-                            start: 0,
-                            size: 9
-                        }
+                        data: { id: brandId, start: 0, size: mediaSize }
                     })
                 }
             });
             this.similarProducts.fetch({
-                data: {
-                    id: productId,
-                    size: 7
-                }
+                data: { id: productId, size: mediaSize }
             });
         }
     }))({el: $('#view-product')});

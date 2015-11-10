@@ -1,7 +1,7 @@
 (function() {
-    
+
     var pageRouter = App.pageRouter;
-    
+
     App.router = new (Backbone.Router.extend({
         navigate: function(fragment, options) {
             options = options || {};
@@ -14,7 +14,7 @@
             this.route('*path', 'index');
             this.route(/product\/(\d+)/, 'product');
             this.route(/brand\/(\d+)/, 'brand');
-            this.route(/compaign\/(\d+)/, 'compaign');
+            this.route(/topic\/(\d+)/, 'topic');
         },
         index: function(path) {
             // this.navigate('home', { replace: true });
@@ -25,9 +25,9 @@
         brand: function(bid) {
             pageRouter.goTo('Brand', { brandId: bid });
         },
-        compaign: function(cid) {
-            pageRouter.goTo('Compaign', { compaignId: cid });
+        topic: function(tid) {
+            pageRouter.goTo('Topic', { topicId: tid });
         }
     }))();
-    
+
 })();

@@ -1,13 +1,13 @@
 (function() {
 
     moment.lang('zh-cn');
-    
+
     var lazyResize = _.debounce(function() {
         $('.views-wrapper').height($(window).height());
     }, 300);
     $(window).resize(lazyResize);
     lazyResize();
-    
+
     $('body').on('click', '[data-route]', function(e) {
         var route = $(e.currentTarget).data('route');
         if (route == 'return') {
@@ -18,22 +18,22 @@
             App.router.navigate(route);
         }
     });
-    
+
     /*
      * App
      */
-    
+
     var App = {
         Version: '1.0.0',
         Models: {},
         Views: {},
         Pages: {}
     };
-    
+
     /*
      * Page Router
      */
-    
+
     App.pageRouter = new (function(pages) {
         this.pages = pages;
         this.history = { active: null, stack: [] };
@@ -41,21 +41,29 @@
             var next = this.pages[pageName];
             var prev = _.last(this.history.stack);
             (options || (options = {})).caller = options.caller || this.history.active;
-            if (next && next == prev) {
+            if (!next) {
+            } else if (next == prev) {
                 this.history.active.leave();
                 this.history.stack.length -= 1;
                 if (this.pushNext) {
                     this.history.stack.push(this.history.active);
-                } else {
-                    options.reverse = true;
                 }
+                options.reverse = !this.pushNext;
                 next.go(options);
                 this.history.active = next;
-            } else if (next && next != this.history.active) {
+            } else if (next != this.history.active) {
                 if (this.history.active) {
                     this.history.active.leave();
                     this.history.stack.push(this.history.active);
                 }
+                // options.reverse = !this.pushNext;
+                next.go(options);
+                this.history.active = next;
+            } else {
+                // next == this.history.active
+                this.history.active.leave();
+                this.history.stack.push(this.history.active);
+                // options.reverse = !this.pushNext;
                 next.go(options);
                 this.history.active = next;
             }
@@ -89,27 +97,27 @@
     App.getTemplate = function(name) {
         return $('#template-' + name).html();
     };
-    
+
     /*
      * Ajax events
      */
-    
+
     var timeout = 500;
     var timeout_stop, timeout_error;
-    
+
     Amour.ajax.on('start', function() {
         clearTimeout(timeout_stop);
         clearTimeout(timeout_error);
         $('#apploader').removeClass('invisible');
     });
-    
+
     Amour.ajax.on('stop', function() {
         timeout_stop = setTimeout(function () {
             $('#apploader').addClass('invisible');
             timeout = 500;
         }, timeout);
     });
-    
+
     Amour.ajax.on('error', function() {
         $('#apploader .ajax-error').removeClass('hidden');
         timeout_error = setTimeout(function () {
@@ -130,13 +138,13 @@
             replace: true
         });
     });
-    
+
     /*
      * Initializations
      */
-    
+
     App.vent = new Amour.EventAggregator();
-    
+
     /*
      * Authorizations
      */
@@ -148,7 +156,7 @@
         Amour.trigger('ComposerAppReady');
         Backbone.history.start();
     };
-    
+
     window.App = App;
 
 })();
