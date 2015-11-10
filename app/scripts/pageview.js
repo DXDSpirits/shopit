@@ -53,6 +53,7 @@
             var isSamePage = !this.$el.hasClass('view-hidden');
             if (isSamePage) {
                 $curPage = this.$el.clone().prependTo('.views-wrapper');
+                $curPage.find('.wrapper').scrollTop(this.$('.wrapper').scrollTop());
                 this.$el.addClass('view-hidden');
             } else {
                 $curPage = $('.view:not(".view-hidden")');
