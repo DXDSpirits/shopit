@@ -44,26 +44,19 @@
             if (!next) {
             } else if (next == prev) {
                 this.history.active.leave();
-                this.history.stack.length -= 1;
                 if (this.pushNext) {
                     this.history.stack.push(this.history.active);
+                } else {
+                    this.history.stack.length -= 1;
                 }
                 options.reverse = !this.pushNext;
                 next.go(options);
                 this.history.active = next;
-            } else if (next != this.history.active) {
+            } else {
                 if (this.history.active) {
                     this.history.active.leave();
                     this.history.stack.push(this.history.active);
                 }
-                // options.reverse = !this.pushNext;
-                next.go(options);
-                this.history.active = next;
-            } else {
-                // next == this.history.active
-                this.history.active.leave();
-                this.history.stack.push(this.history.active);
-                // options.reverse = !this.pushNext;
                 next.go(options);
                 this.history.active = next;
             }
