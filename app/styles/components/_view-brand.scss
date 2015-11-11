@@ -1,18 +1,64 @@
 
 #view-brand {
     .brand-wrapper {
+        margin-bottom: 1px;
         .cover {
             padding-top: 50%;
+            position: relative;
         }
         .brand-logo {
-            height: 100px;
-            width: 100px;
+            height: 75px;
+            width: 75px;
+            margin: -130px auto 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(#eee, 0.7);
+        }
+        .name {
+            color: #fff;
+        }
+        .container-fluid {
+            padding-top: 20px;
+            padding-bottom: 30px;
+            background-color: #fff;
+        }
+        .social {
+            margin: 20px auto;
+            position: relative;
+        }
+        .dot {
+            position: absolute;
+            left: 50%;
         }
     }
-    .brand-products, .brand-topics {}
-    .media-item {
-        .img {
-            padding-top: 50%;
+    .store {
+        padding: 15px;
+        background-color: #fff;
+    }
+    .media-carousel {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        background-color: #fff;
+        .nav > li {
+            width: 50%;
+            margin: 0;
+            > a {
+                display: inline-block;
+                position: relative;
+            }
+            &.active > a::after {
+                content: "";
+                position: absolute;
+                left: 15px;
+                right: 15px;
+                bottom: 3px;
+                height: 2px;
+                background-color: $brand-success;
+            }
+        }
+        .media-item {
+            .img {
+                padding-top: 50%;
+            }
         }
     }
 }

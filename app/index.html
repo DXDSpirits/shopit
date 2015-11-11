@@ -47,7 +47,7 @@
                 <div class="store text-center">
                     <button class="btn btn-outline">查看所在店铺</button>
                 </div>
-                <div class="products-carousel">
+                <div class="media-carousel">
                     <ul class="nav nav-pills text-center">
                         <li class="active"><a href="#view-product .similar-products" data-toggle="tab">同类推荐</a></li>
                         <li><a href="#view-product .brand-products" data-toggle="tab">当前品牌</a></li>
@@ -66,9 +66,22 @@
         <section class="view view-hidden" id="view-brand">
             <div class="wrapper">
                 <div class="brand-wrapper"></div>
-                <div class="media-list">
-                    <div class="brand-topics"></div>
-                    <div class="brand-products"></div>
+                <div class="store text-center">
+                    <button class="btn btn-outline">查看品牌店铺</button>
+                </div>
+                <div class="media-carousel">
+                    <ul class="nav nav-pills text-center">
+                        <li class="active"><a href="#view-brand .brand-products" data-toggle="tab">商品</a></li>
+                        <li><a href="#view-brand .brand-topics" data-toggle="tab">专题</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active fade in brand-products">
+                            <div class="media-list"></div>
+                        </div>
+                        <div class="tab-pane fade brand-topics">
+                            <div class="media-list"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -99,11 +112,18 @@
     </script>
 
     <script id="template-brand-detail" type="text/x-handlebars-template">
-        <div class="img cover" data-bg-src="{{apiFullpath img}}"></div>
-        <div class="img brand-logo" data-bg-src="{{apiFullpath logo}}"></div>
-        <div class="name">{{name}}</div>
-        <div class="description">{{{description}}}</div>
-        <button class="btn btn-primary">查看品牌店铺</button>
+        <div class="img cover" data-bg-src="{{apiFullpath img}}">
+            <div class="img brand-logo" data-bg-src="{{apiFullpath logo}}"></div>
+            <div class="name text-center">{{name}}</div>
+        </div>
+        <div class="container-fluid">
+            <div class="social text-center clearfix">
+                <div class="col-xs-6"><a href="/">关注</a></div>
+                <div class="dot">·</div>
+                <div class="col-xs-6"><a href="/">分享</a></div>
+            </div>
+            <div class="description">{{{description}}}</div>
+        </div>
     </script>
 
     <script id="template-topic-detail" type="text/x-handlebars-template">

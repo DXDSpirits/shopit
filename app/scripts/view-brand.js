@@ -48,11 +48,11 @@
                 }),
                 products: new MediasListView({
                     collection: this.products,
-                    el: this.$('.brand-products')
+                    el: this.$('.brand-products .media-list')
                 }),
                 topics: new MediasListView({
                     collection: this.topics,
-                    el: this.$('.brand-topics')
+                    el: this.$('.brand-topics .media-list')
                 })
             };
         },
