@@ -1,6 +1,6 @@
 (function() {
 
-    var mediaSize = 1;
+    var mediaSize = 9;
 
     var ProductModel = Amour.Model.extend({
         url: Amour.APIRoot + 'beacon/data/getItemBycityName.do'
@@ -22,7 +22,7 @@
         ModelView: Amour.ModelView.extend({
             events: { 'click': 'viewDetail' },
             className: 'media-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div>{{name}}</div><div>{{price}}</div>',
+            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div class="name">{{name}}</div><div>{{price}}</div>',
             viewDetail: function() {
                 App.router.navigate('product/' + this.model.id);
             }
@@ -41,11 +41,11 @@
                 }),
                 similarProducts: new MediasListView({
                     collection: this.similarProducts,
-                    el: this.$('.similar-products')
+                    el: this.$('.similar-products .media-list')
                 }),
                 brandProducts: new MediasListView({
                     collection: this.brandProducts,
-                    el: this.$('.brand-products')
+                    el: this.$('.brand-products .media-list')
                 })
             };
         },

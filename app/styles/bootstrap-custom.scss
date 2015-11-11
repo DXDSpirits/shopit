@@ -134,12 +134,13 @@ input[type="datetime-local"] {
 }
 
 .btn-outline {
-    color: $brand-primary;
+    color: $btn-default-bg;
     background-color: transparent;
-    border-color: $brand-primary;
+    border-color: $btn-default-bg;
+    border-width: 2px;
     &:hover, &:focus, &:active {
-        color: #fff;
-        background-color: $brand-primary;
+        color: $btn-default-color;
+        background-color: $btn-default-bg;
         border-color: transparent;
     }
 }
