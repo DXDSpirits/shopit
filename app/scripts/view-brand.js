@@ -65,12 +65,15 @@
         render: function() {
             var brandId = this.options.brandId;
             this.brand.fetch({
+                dataType: 'jsonp',
                 data: { id: brandId }
             });
             this.products.fetch({
+                dataType: 'jsonp',
                 data: { id: brandId, start: 0, size: mediaSize }
             });
             this.topics.fetch({
+                dataType: 'jsonp',
                 data: { id: brandId, start: 0, size: mediaSize }
             });
         }

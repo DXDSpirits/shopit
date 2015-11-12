@@ -74,12 +74,15 @@
         render: function() {
             var topicId = this.options.topicId;
             this.topic.fetch({
-                data: { id: topicId }
+                dataType: 'jsonp',
+                data: { id: topicId },
             });
             this.products.fetch({
+                dataType: 'jsonp',
                 data: { id: topicId, start: 0, size: mediaSize }
             });
             this.comments.fetch({
+                dataType: 'jsonp',
                 data: { tid: topicId, size: 10, max_id: null }
             });
         }

@@ -18,6 +18,7 @@
         },
         index: function(path) {
             // this.navigate('home', { replace: true });
+            this.navigate('topic/96', { replace: true });
         },
         product: function(pid) {
             pageRouter.goTo('Product', { productId: pid });

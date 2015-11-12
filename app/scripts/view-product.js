@@ -53,15 +53,18 @@
             var productId = this.options.productId;
             var self = this;
             this.product.fetch({
+                dataType: 'jsonp',
                 data: { id: productId },
                 success: function(model) {
                     var brandId = self.product.get('brand').id;
                     self.brandProducts.fetch({
+                        dataType: 'jsonp',
                         data: { id: brandId, start: 0, size: mediaSize }
                     })
                 }
             });
             this.similarProducts.fetch({
+                dataType: 'jsonp',
                 data: { id: productId, size: mediaSize }
             });
         }
