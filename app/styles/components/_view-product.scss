@@ -74,24 +74,25 @@
         .tab-pane {
             overflow: auto;
         }
-        .media-list {
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
+    }
+    .media-list {
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+    }
+    .media-item {
+        cursor: pointer;
+        display: inline-block;
+        width: 100px;
+        margin: 5px;
+        line-height: 1.2;
+        .name {
+            @include ellipsis();
         }
-        .media-item {
-            display: inline-block;
-            width: 100px;
-            margin: 5px;
-            line-height: 1.2;
-            .name {
-                @include ellipsis();
-            }
-            .img {
-                padding-top: 130%;
-                border: 1px solid #f0f0f0;
-                margin-bottom: 10px;
-            }
+        .img {
+            padding-top: 130%;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 10px;
         }
     }
 }

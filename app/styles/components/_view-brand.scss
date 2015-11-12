@@ -55,10 +55,19 @@
                 background-color: $brand-success;
             }
         }
-        .media-item {
-            .img {
-                padding-top: 50%;
-            }
+    }
+    .media-item {
+        cursor: pointer;
+        .img {
+            padding-top: 50%;
+            position: relative;
+        }
+        .title {
+            @include position(absolute, auto 0 0 0);
+            background-color: rgba(#000, 0.3);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
         }
     }
 }

@@ -175,3 +175,8 @@ baseURL/beacon/data/getAllCommentByTopic.do
 }
 
 注意：当第一获取评论时不需要传max_id,之后传每个数组最后一个元素的createTime
+
+9.获取商品详情
+URL:baseUrl/beacon/admin/getTopic.do
+请求参数：
+    id: 专题id,

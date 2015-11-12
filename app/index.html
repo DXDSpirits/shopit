@@ -40,6 +40,8 @@
         </div>
     </div>
 
+    <!-- Views -->
+
     <div class="views-wrapper">
         <section class="view view-hidden" id="view-product">
             <div class="wrapper">
@@ -88,11 +90,20 @@
         <section class="view view-hidden" id="view-topic">
             <div class="wrapper">
                 <div class="topic-wrapper"></div>
-                <div class="topic-products"></div>
-                <div class="topic-comments"></div>
+                <div class="topic-products">
+                    <div class="deco-title"></div>
+                    <div class="media-list"></div>
+                </div>
+                <div class="topic-comments">
+                    <!-- <div class="comment-title">评论</div>
+                    <div class="comment-button">添加评论</div> -->
+                    <div class="comments-list"></div>
+                </div>
             </div>
         </section>
     </div>
+
+    <!-- Templates -->
 
     <script id="template-product-detail" type="text/x-handlebars-template">
         <div class="img cover" data-bg-src="{{apiFullpath img}}">
@@ -128,7 +139,15 @@
 
     <script id="template-topic-detail" type="text/x-handlebars-template">
         <div class="img cover" data-bg-src="{{apiFullpath img}}"></div>
-        <div class="description">{{{description}}}</div>
+        <div class="container-fluid">
+            <h4 class="title">{{title}}</h4>
+            <div class="social text-center clearfix">
+                <div class="col-xs-6"><a href="/">收藏</a></div>
+                <div class="dot">·</div>
+                <div class="col-xs-6"><a href="/">分享</a></div>
+            </div>
+            <div class="description text-justify">{{{description}}}</div>
+        </div>
     </script>
 
     <!-- build:js scripts/vendor.min.js -->

@@ -24,12 +24,18 @@
         ModelView: Amour.ModelView.extend({
             events: { 'click': 'viewDetail' },
             className: 'media-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div>{{name}}</div>',
+            template: function() {
+                if (this.model.collection.mediaType == 'product') {
+                    return '<div class="img" data-bg-src="{{apiFullpath img}}"><div class="title">{{name}}</div></div>';
+                } else {
+                    return '<div class="img" data-bg-src="{{apiFullpath img}}"><div class="title">{{title}}</div></div>';
+                }
+            },
             viewDetail: function() {
                 if (this.model.collection.mediaType == 'product') {
                     App.router.navigate('product/' + this.model.id);
                 } else {
-                    App.Pages.Topic.topic.set(this.model.toJSON());
+                    // App.Pages.Topic.topic.set(this.model.toJSON());
                     App.router.navigate('topic/' + this.model.id);
                 }
             }
