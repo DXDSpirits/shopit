@@ -29,6 +29,16 @@
             position: absolute;
             left: 50%;
         }
+        .subscribe, .share {
+            display: inline-block;
+            padding-top: 5px;
+            padding-left: 25px;
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: auto 20px;
+        }
+        .subscribe { background-image: url(../images/sprites/plus.png); }
+        .share { background-image: url(../images/sprites/share.png); }
     }
     .store {
         padding: 15px;

@@ -21,6 +21,16 @@
         .description {
             color: #999;
         }
+        .comment, .share {
+            display: inline-block;
+            padding-top: 5px;
+            padding-left: 25px;
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: auto 20px;
+        }
+        .comment { background-image: url(../images/sprites/comment.png); }
+        .share { background-image: url(../images/sprites/share.png); }
     }
     .topic-products {
         .media-list {
@@ -84,9 +94,15 @@
             font-size: 1.1em;
         }
         .comment-button {
+            cursor: pointer;
             position: absolute;
             right: 0;
             top: 20px;
+            display: inline-block;
+            padding-top: 5px;
+            padding-left: 25px;
+            background: url(../images/sprites/comment.png) no-repeat left;
+            background-size: auto 16px;
         }
         .comment-item {
             margin: 20px auto;
@@ -111,6 +127,7 @@
         .comment-tip {
             cursor: pointer;
             margin: 20px auto;
+            font-size: 0.9em;
         }
     }
 }
