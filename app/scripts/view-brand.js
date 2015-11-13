@@ -31,12 +31,7 @@
         ModelView: Amour.ModelView.extend({
             events: { 'click': 'viewDetail' },
             className: 'product-media-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div>' +
-                      '<div class="content">' +
-                      '<div><span class="brand">{{brand.name}}</span></div>' +
-                      '<div class="name">{{name}}</div>' +
-                      '<div>{{#if isDiscount}}<span class="discount">￥{{price}}</span>{{/if}}<span class="text-success">￥{{offPrice}}</span></div>' +
-                      '</div>',
+            template: App.getTemplate('product-media-item'),
             viewDetail: function() {
                 App.router.navigate('product/' + this.model.id);
             }

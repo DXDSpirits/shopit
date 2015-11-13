@@ -22,12 +22,7 @@
         ModelView: Amour.ModelView.extend({
             events: { 'click': 'viewDetail' },
             className: 'media-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div>' +
-                      '<div class="content">' +
-                      '<div><span class="brand">{{brand.name}}</span></div>' +
-                      '<div class="name">{{name}}</div>' +
-                      '<div>{{#if isDiscount}}<span class="discount">￥{{price}}</span>{{/if}}<span class="text-success">￥{{offPrice}}</span></div>' +
-                      '</div>',
+            template: App.getTemplate('product-media-item'),
             viewDetail: function() {
                 App.router.navigate('product/' + this.model.id);
             }
@@ -37,11 +32,7 @@
     var CommentsListView = Amour.CollectionView.extend({
         ModelView: Amour.ModelView.extend({
             className: 'comment-item',
-            template: '<div class="avatar img" data-bg-src="{{apiFullpath user.img}}"></div>' +
-                      '<div class="like">{{like}}</div>' +
-                      '<div class="name">{{user.nickname}}</div>' +
-                      '<div class="time">{{formatted_date}}</div>' +
-                      '<div class="reply">{{reply}}</div>',
+            template: App.getTemplate('comment-item'),
             serializeData: function() {
                 var data = Amour.ModelView.prototype.serializeData.call(this);
                 data.formatted_date = moment(data.createTime).format('MM月DD日 HH:mm');

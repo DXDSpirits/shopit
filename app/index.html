@@ -102,6 +102,16 @@
                 </div>
             </div>
         </section>
+        <section class="view view-hidden" id="view-topic">
+            <div class="wrapper">
+                <div class="topic-comments">
+                    <div class="comment-title">评论</div>
+                    <div class="comment-button">添加评论</div>
+                    <div class="comments-list"></div>
+                    <div class="comment-tip text-center">查看全部<span></span>条评论</div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Templates -->
@@ -149,6 +159,26 @@
             </div>
             <div class="description text-justify">{{{description}}}</div>
         </div>
+    </script>
+
+    <script id="template-product-media-item" type="text/x-handlebars-template">
+        <div class="img" data-bg-src="{{apiFullpath img}}"></div>
+        <div class="content">
+            <div><span class="brand">{{brand.name}}</span></div>
+            <div class="name">{{name}}</div>
+            <div>
+                {{#if isDiscount}}<span class="discount">￥{{price}}</span>{{/if}}
+                <span class="text-success">￥{{offPrice}}</span>
+            </div>
+        </div>
+    </script>
+
+    <script id="template-comment-item" type="text/x-handlebars-template">
+        <div class="avatar img" data-bg-src="{{apiFullpath user.img}}"></div>
+        <div class="like">{{like}}</div>
+        <div class="name">{{user.nickname}}</div>
+        <div class="time">{{formatted_date}}</div>
+        <div class="reply">{{reply}}</div>
     </script>
 
     <!-- build:js scripts/vendor.min.js -->
