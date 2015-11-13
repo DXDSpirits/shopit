@@ -111,6 +111,11 @@
                 <a class="comment-add" href="app.html">添加评论</a>
             </div>
         </section>
+        <section class="view view-hidden" id="view-address">
+            <div class="wrapper">
+                <div class="address-list"></div>
+            </div>
+        </section>
     </div>
 
     <!-- Templates -->
@@ -180,6 +185,13 @@
         <div class="reply">{{reply}}</div>
     </script>
 
+    <script id="template-address-item" type="text/x-handlebars-template">
+        <h4 class="name">{{name}}</h4>
+        <div>{{cityName}}{{address}}</div>
+        {{#if phone}}<div class="phone">{{phone}}</div>{{/if}}
+        <div class="distance">{{distance}}m</div>
+    </script>
+
     <!-- build:js scripts/vendor.min.js -->
     <script src="scripts/vendor/jquery-2.1.1.min.js"></script>
     <script src="scripts/vendor/underscore.min.js"></script>
@@ -203,6 +215,7 @@
     <script src="scripts/view-brand.js"></script>
     <script src="scripts/view-topic.js"></script>
     <script src="scripts/view-topic-comments.js"></script>
+    <script src="scripts/view-address.js"></script>
     <script src="scripts/appstart.js"></script>
     <!-- endbuild -->
 

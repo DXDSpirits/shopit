@@ -14,6 +14,7 @@
             this.route('*path', 'index');
             this.route(/product\/(\d+)/, 'product');
             this.route(/brand\/(\d+)/, 'brand');
+            this.route(/brand\/(\d+)\/address/, 'brandAddress');
             this.route(/topic\/(\d+)/, 'topic');
             this.route(/topic\/(\d+)\/comments/, 'comments');
         },
@@ -32,6 +33,9 @@
         },
         comments: function(tid) {
             pageRouter.goTo('TopicComments', { topicId: tid });
+        },
+        brandAddress: function(bid) {
+            pageRouter.goTo('Address', { brandId: bid });
         }
     }))();
 

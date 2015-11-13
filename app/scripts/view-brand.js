@@ -39,6 +39,9 @@
     });
 
     App.Pages.Brand = new (App.PageView.extend({
+        events: {
+            'click .store .btn': 'viewStores'
+        },
         initPage: function() {
             this.brand = new BrandModel();
             this.products = new ProductsCollection();
@@ -57,6 +60,9 @@
                     el: this.$('.brand-topics .media-list')
                 })
             };
+        },
+        viewStores: function() {
+            App.router.navigate(['brand', this.brand.id, 'address'].join('/'));
         },
         render: function() {
             var brandId = this.options.brandId;

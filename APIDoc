@@ -180,3 +180,15 @@ baseURL/beacon/data/getAllCommentByTopic.do
 URL:baseUrl/beacon/admin/getTopic.do
 请求参数：
     id: 专题id,
+
+
+10.获取商品地址
+URL:baseUrl/beacon/data/listStoresByItemid.do
+请求参数：
+    id: 商品id,
+
+
+11.获取店铺详情
+URL:baseUrl/beacon/data/listBrandStores.do
+请求参数：
+    id: 商品id,
