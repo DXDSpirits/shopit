@@ -1,18 +1,14 @@
 (function() {
 
-    var mediaSize = 9;
-
     var BrandModel = Amour.Model.extend({
         url: Amour.APIRoot + 'beacon/data/getBrand.do'
     });
 
     var ProductsCollection = Amour.Collection.extend({
-        mediaType: 'product',
         url: Amour.APIRoot + 'beacon/data/listItemByBid.do'
     });
 
     var TopicsCollection = Amour.Collection.extend({
-        mediaType: 'topic',
         url: Amour.APIRoot + 'beacon/data/listTopicByBid.do'
     });
 
@@ -20,24 +16,29 @@
         template: App.getTemplate('brand-detail')
     });
 
-    var MediasListView = Amour.CollectionView.extend({
+    var TopicsListView = Amour.CollectionView.extend({
         ModelView: Amour.ModelView.extend({
             events: { 'click': 'viewDetail' },
-            className: 'media-item',
-            template: function() {
-                if (this.model.collection.mediaType == 'product') {
-                    return '<div class="img" data-bg-src="{{apiFullpath img}}"><div class="title">{{name}}</div></div>';
-                } else {
-                    return '<div class="img" data-bg-src="{{apiFullpath img}}"><div class="title">{{title}}</div></div>';
-                }
-            },
+            className: 'topic-media-item',
+            template: '<div class="img" data-bg-src="{{apiFullpath img}}"><div class="title">{{title}}</div></div>',
             viewDetail: function() {
-                if (this.model.collection.mediaType == 'product') {
-                    App.router.navigate('product/' + this.model.id);
-                } else {
-                    // App.Pages.Topic.topic.set(this.model.toJSON());
-                    App.router.navigate('topic/' + this.model.id);
-                }
+                App.router.navigate('topic/' + this.model.id);
+            }
+        })
+    });
+
+    var ProductsListView = Amour.CollectionView.extend({
+        ModelView: Amour.ModelView.extend({
+            events: { 'click': 'viewDetail' },
+            className: 'product-media-item',
+            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div>' +
+                      '<div class="content">' +
+                      '<div><span class="brand">{{brand.name}}</span></div>' +
+                      '<div class="name">{{name}}</div>' +
+                      '<div>{{#if isDiscount}}<span class="discount">￥{{price}}</span>{{/if}}<span class="text-success">￥{{offPrice}}</span></div>' +
+                      '</div>',
+            viewDetail: function() {
+                App.router.navigate('product/' + this.model.id);
             }
         })
     });
@@ -52,11 +53,11 @@
                     model: this.brand,
                     el: this.$('.brand-wrapper')
                 }),
-                products: new MediasListView({
+                products: new ProductsListView({
                     collection: this.products,
                     el: this.$('.brand-products .media-list')
                 }),
-                topics: new MediasListView({
+                topics: new TopicsListView({
                     collection: this.topics,
                     el: this.$('.brand-topics .media-list')
                 })
@@ -70,11 +71,11 @@
             });
             this.products.fetch({
                 dataType: 'jsonp',
-                data: { id: brandId, start: 0, size: mediaSize }
+                data: { id: brandId, start: 0, size: 6 }
             });
             this.topics.fetch({
                 dataType: 'jsonp',
-                data: { id: brandId, start: 0, size: mediaSize }
+                data: { id: brandId, start: 0, size: 9 }
             });
         }
     }))({el: $('#view-brand')});

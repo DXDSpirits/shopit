@@ -37,7 +37,9 @@
     .media-carousel {
         margin-top: 10px;
         margin-bottom: 30px;
-        background-color: #fff;
+        .nav {
+            background-color: #fff;
+        }
         .nav > li {
             width: 50%;
             margin: 0;
@@ -56,8 +58,9 @@
             }
         }
     }
-    .media-item {
+    .topic-media-item {
         cursor: pointer;
+        margin: 10px;
         .img {
             padding-top: 50%;
             position: relative;
@@ -68,6 +71,42 @@
             color: #fff;
             padding: 10px;
             text-align: center;
+        }
+    }
+    .product-media-item {
+        cursor: pointer;
+        float: left;
+        width: 47%;
+        margin-left: 2%;
+        margin-top: 2%;
+        background-color: #fff;
+        .img {
+            padding-top: 130%;
+        }
+        .content {
+            padding: 15px 10px;
+        }
+        .brand {
+            display: inline-block;
+            background-color: #000;
+            padding: 2px 5px;
+            color: #fff;
+        }
+        .discount {
+            text-decoration: line-through;
+            display: inline-block;
+            margin-right: 1em;
+            color: #999;
+        }
+        .name {
+            margin: 15px auto 10px;
+            @include ellipsis();
+        }
+        .deco-title {
+            height: 50px;
+            background: url(../images/topic-products-title.png) no-repeat center;
+            background-size: auto 25px;
+            margin-top: 3%;
         }
     }
 }

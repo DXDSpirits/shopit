@@ -1,9 +1,9 @@
 (function() {
-    
+
     if (navigator.userAgent.match(/MQQBrowser/)) {
         Backbone.emulateHTTP = true;
     }
-    
+
     if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         var msViewportStyle = document.createElement("style");
         msViewportStyle.appendChild(
@@ -13,7 +13,7 @@
         );
         document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
     }
-    
+
     if (!window.location.origin) {
         window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
     }
@@ -28,15 +28,15 @@
         });
         window.location.query = _.object(keys, vals);
     })();
-    
+
     (function initFastclick() {
         var fastclick = new FastClick(document.body);
     })();
-    
+
     /*
      * Amour
      */
-    
+
     var Amour = window.Amour = {
         version: '1.0',
         APIRoot: 'http://123.57.253.146/',
@@ -49,25 +49,25 @@
 
     Amour.isWeixin = /MicroMessenger/i.test(navigator.userAgent);
     Amour.isMobile = /iPhone|Android|iPad|Windows Phone/i.test(navigator.userAgent);
-    
+
     /*
      * Events and Routers
      */
-    
+
     // Allow the `Amour` object to serve as a global event bus
     _.extend(Amour, Backbone.Events);
-    
+
     var EventAggregator = Amour.EventAggregator = (function() {
         var EA = function() {};
         EA.extend = Backbone.Model.extend;
         _.extend(EA.prototype, Backbone.Events);
         return EA;
     })();
-    
+
     /*
      * Models and Views
      */
-    
+
     if (window.Handlebars) {
         Amour.TPL = Handlebars;
         Handlebars.render = function(template, attrs) {
@@ -98,7 +98,7 @@
         };
     }
     var TPL = Amour.TPL;
-    
+
     var Model = Amour.Model = Backbone.Model.extend({
         initialize: function(attributes, options) {
             options = options || {};
@@ -117,7 +117,7 @@
             return origUrl + (origUrl.charAt(origUrl.length - 1) == '/' ? '' : '/');
         }
     });
-    
+
     var Collection = Amour.Collection = Backbone.Collection.extend({
         model: Model,
         initialize: function(models, options) {
@@ -128,7 +128,8 @@
             if (response.response != null) {
                 this.responseCode = response.code;
                 if (response.response.list != null) {
-                    return response.response.list
+                    this.size = response.response.size;
+                    return response.response.list;
                 } else {
                     return response.response;
                 }
@@ -151,7 +152,7 @@
             }
         }
     });
-    
+
     var View = Amour.View = Backbone.View.extend({
         initialize: function(options) {
             if (this.initView) this.initView(options || {});
@@ -173,7 +174,7 @@
             return _.extend(target, _.result(this, 'templateHelpers'));
         }
     });
-    
+
     var ModelView = Amour.ModelView = View.extend({
         listenToModel: function() {
             this.listenTo(this.model, 'change', this.render);
@@ -199,7 +200,7 @@
             return this.renderTemplate(this.serializeData());
         }
     });
-    
+
     var CollectionView = Amour.CollectionView = View.extend({
         ModelView: ModelView,
         listenToCollection: function() {
@@ -248,11 +249,11 @@
             return this;
         }
     });
-    
+
     /*
      * Utility Functions
      */
-    
+
     Amour.storage = new function() {
         this.set = function(key, val) { localStorage.setItem(key, val); };
         this.get = function(key) { return localStorage.getItem(key); };
@@ -267,21 +268,21 @@
             this.del = function(key) { this.vault[key] = null; };
         }
     };
-    
+
     Amour.openWindow = function(link) {
         window.open(link, '_self', 'location=no');
     };
-    
+
     Amour.optimizeImage = function(fullpath) {
         return fullpath;
     };
-    
+
     Amour.imageFullpath = function(src, options) {
         options = options || {};
         var fullpath = /^http:\/\//.test(src) ? src : Amour.StaticURL + src;
         return options.optimize === false ? fullpath: Amour.optimizeImage(fullpath);
     };
-    
+
     Amour.loadImage = function(img, src, options) {
         options = options || {};
         if (!src) {
@@ -302,7 +303,7 @@
         img.removeClass('img-broken').addClass('img-loading');
         image.src = image_src;
     };
-    
+
     Amour.loadBgImage = function(el, src, options) {
         options = options || {};
         if (!src) {
@@ -327,7 +328,7 @@
         el.removeClass('img-broken').addClass('img-loading');
         image.src = image_src;
     };
-    
+
     Amour.fillImages = function() {
         var count = 1 + $('img[data-src]').length + $('.img[data-bg-src]').length;
         var imageLoad = _.after(count, function() {
@@ -348,11 +349,11 @@
             });
         });
     };
-    
+
     /*
      * Initializations
      */
-    
+
     var initSync = function () {
         var authToken = Amour.storage.get('auth-token');
         var originalSync = Backbone.sync;
@@ -378,7 +379,7 @@
             }
         };
     };
-    
+
     var initAjaxEvents = function () {
         _.extend((Amour.ajax = {}), Backbone.Events);
         $(document).ajaxStart(function () {
@@ -400,15 +401,15 @@
             }
         });
     };
-    
+
     if (!window['amour-lazy-loading-images']) {
         Amour.fillImages();
     }
-    
-    /* 
+
+    /*
      * Export
      */
     initSync();
     initAjaxEvents();
-    
+
 })();

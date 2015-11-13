@@ -26,7 +26,7 @@
                       '<div class="content">' +
                       '<div><span class="brand">{{brand.name}}</span></div>' +
                       '<div class="name">{{name}}</div>' +
-                      '<div class="text-success">{{price}}</div>' +
+                      '<div>{{#if isDiscount}}<span class="discount">￥{{price}}</span>{{/if}}<span class="text-success">￥{{offPrice}}</span></div>' +
                       '</div>',
             viewDetail: function() {
                 App.router.navigate('product/' + this.model.id);
@@ -52,6 +52,9 @@
     });
 
     App.Pages.Topic = new (App.PageView.extend({
+        events: {
+            'click .comment-tip': 'viewAllComments'
+        },
         initPage: function() {
             this.topic = new TopicModel();
             this.products = new ProductsCollection();
@@ -71,6 +74,9 @@
                 })
             };
         },
+        viewAllComments: function() {
+            App.router.navigate(['topic', this.topic.id, 'comments'].join('/'));
+        },
         render: function() {
             var topicId = this.options.topicId;
             this.topic.fetch({
@@ -81,9 +87,13 @@
                 dataType: 'jsonp',
                 data: { id: topicId, start: 0, size: mediaSize }
             });
+            var self = this;
             this.comments.fetch({
                 dataType: 'jsonp',
-                data: { tid: topicId, size: 10, max_id: null }
+                data: { tid: topicId, size: 3, max_id: null },
+                success: function(collection) {
+                    self.$('.comment-tip span').text(collection.size);
+                }
             });
         }
     }))({el: $('#view-topic')});
