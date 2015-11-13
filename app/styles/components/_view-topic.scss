@@ -104,6 +104,12 @@
             background: url(../images/sprites/comment.png) no-repeat left;
             background-size: auto 16px;
         }
+        .comment-tip {
+            display: block;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 0.9em;
+        }
     }
 }
 
@@ -125,11 +131,5 @@
     }
     .reply {
         margin-top: 10px;
-    }
-    .comment-tip {
-        display: block;
-        cursor: pointer;
-        margin: 20px auto;
-        font-size: 0.9em;
     }
 }
