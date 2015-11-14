@@ -189,7 +189,8 @@
         <h4 class="name">{{name}}</h4>
         <div>{{cityName}}{{address}}</div>
         {{#if phone}}<div class="phone">{{phone}}</div>{{/if}}
-        <div class="distance">{{distance}}m</div>
+        <a href="http://api.map.baidu.com/marker?location={{lng}},{{lat}}&title={{name}}&content={{cityName}}{{address}}&output=html"
+            class="distance"></a>
     </script>
 
     <!-- build:js scripts/vendor.min.js -->
