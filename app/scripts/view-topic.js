@@ -36,7 +36,7 @@
             serializeData: function() {
                 var data = Amour.ModelView.prototype.serializeData.call(this);
                 data.formatted_date = moment(data.createTime).format('MM月DD日 HH:mm');
-                data.like = data.like || '';
+                data.likeCount = +data.likeCount;
                 return data;
             }
         })

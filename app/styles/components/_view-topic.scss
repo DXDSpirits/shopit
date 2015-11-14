@@ -132,4 +132,22 @@
     .reply {
         margin-top: 10px;
     }
+    .like {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        > span {
+            display: inline-block;
+            height: 14px;
+            font-size: 12px;
+            padding-left: 20px;
+            background-repeat: no-repeat;
+            background-position: left;
+            background-size: auto 14px;
+            background-image: url(../images/sprites/like-dark.png);
+            &.liked {
+                background-image: url(../images/sprites/like-light.png);
+            }
+        }
+    }
 }

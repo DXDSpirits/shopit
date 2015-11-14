@@ -173,7 +173,13 @@
 
     <script id="template-comment-item" type="text/x-handlebars-template">
         <div class="avatar img" data-bg-src="{{apiFullpath user.img}}"></div>
-        <div class="like">{{like}}</div>
+        <a class="like" href="app.html">
+            {{#if likeCount}}
+                <span class="liked text-success">{{likeCount}}</span>
+            {{else}}
+                <span></span>
+            {{/if}}
+        </a>
         <div class="name">{{user.nickname}}</div>
         <div class="time">{{formatted_date}}</div>
         <div class="reply">{{reply}}</div>
