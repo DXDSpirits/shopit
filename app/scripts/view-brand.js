@@ -13,7 +13,15 @@
     });
 
     var BrandView = Amour.ModelView.extend({
-        template: App.getTemplate('brand-detail')
+        template: App.getTemplate('brand-detail'),
+        render: function() {
+            Amour.ModelView.prototype.render.call(this);
+            var h = this.$('.description').height();
+            if (h > 50) {
+                // this.$('.description').addClass('ellipsis');
+            }
+            return this;
+        }
     });
 
     var TopicsListView = Amour.CollectionView.extend({

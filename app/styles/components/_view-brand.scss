@@ -40,6 +40,21 @@
         .subscribe { background-image: url(../images/sprites/plus.png); }
         .share { background-image: url(../images/sprites/share.png); }
     }
+    .description.ellipsis {
+        height: 40px;
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: "...";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 20px;
+            width: 10em;
+            padding-left: 3px;
+            background-color: #fff;
+        }
+    }
     .store {
         padding: 15px;
         background-color: #fff;

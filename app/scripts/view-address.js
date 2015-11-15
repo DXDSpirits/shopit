@@ -61,12 +61,18 @@
             };
         },
         render: function() {
-            var brandId = this.options.brandId;
-            var url = Amour.APIRoot + 'beacon/data/listBrandStores.do';
+            var id, url;
+            if (this.options.brandId) {
+                id = this.options.brandId;
+                url = Amour.APIRoot + 'beacon/data/listBrandStores.do';
+            } else {
+                id = this.options.productId;
+                url = Amour.APIRoot + 'beacon/data/listStoresByItemid.do';
+            }
             this.address.fetch({
                 dataType: 'jsonp',
                 url: url,
-                data: { id: brandId }
+                data: { id: id, cityName: '北京市' }
             });
         }
     }))({el: $('#view-address')});

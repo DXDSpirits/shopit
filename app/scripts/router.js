@@ -13,6 +13,7 @@
         initialize: function(){
             this.route('*path', 'index');
             this.route(/product\/(\d+)/, 'product');
+            this.route(/product\/(\d+)\/address/, 'productAddress');
             this.route(/brand\/(\d+)/, 'brand');
             this.route(/brand\/(\d+)\/address/, 'brandAddress');
             this.route(/topic\/(\d+)/, 'topic');
@@ -36,6 +37,9 @@
         },
         brandAddress: function(bid) {
             pageRouter.goTo('Address', { brandId: bid });
+        },
+        productAddress: function(pid) {
+            pageRouter.goTo('Address', { productId: pid });
         }
     }))();
 

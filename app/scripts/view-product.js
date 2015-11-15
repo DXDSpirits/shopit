@@ -30,6 +30,9 @@
     });
 
     App.Pages.Product = new (App.PageView.extend({
+        events: {
+            'click .store .btn': 'viewStores'
+        },
         initPage: function() {
             this.product = new ProductModel();
             this.similarProducts = new ProductSimilarCollection();
@@ -48,6 +51,9 @@
                     el: this.$('.brand-products .media-list')
                 })
             };
+        },
+        viewStores: function() {
+            App.router.navigate(['product', this.product.id, 'address'].join('/'));
         },
         render: function() {
             var productId = this.options.productId;
