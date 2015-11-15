@@ -66,7 +66,8 @@
                     self.brandProducts.fetch({
                         dataType: 'jsonp',
                         data: { id: brandId, start: 0, size: mediaSize }
-                    })
+                    });
+                    self.$('.store').toggleClass('hidden', model.get('online') == 1);
                 }
             });
             this.similarProducts.fetch({
