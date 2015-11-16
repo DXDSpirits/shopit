@@ -1,7 +1,5 @@
 (function() {
 
-    var mediaSize = 4;
-
     var TopicModel = Amour.Model.extend({
         url: Amour.APIRoot + 'beacon/admin/getTopic.do'
     });
@@ -76,7 +74,7 @@
             });
             this.products.fetch({
                 dataType: 'jsonp',
-                data: { id: topicId, start: 0, size: mediaSize }
+                data: { id: topicId, start: 0, size: 99 }
             });
             var self = this;
             this.comments.fetch({

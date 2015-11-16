@@ -80,11 +80,11 @@
             });
             this.products.fetch({
                 dataType: 'jsonp',
-                data: { id: brandId, start: 0, size: 6 }
+                data: { id: brandId, start: 0, size: 99 }
             });
             this.topics.fetch({
                 dataType: 'jsonp',
-                data: { id: brandId, start: 0, size: 9 }
+                data: { id: brandId, start: 0, size: 99 }
             });
         }
     }))({el: $('#view-brand')});
