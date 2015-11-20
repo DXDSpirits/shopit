@@ -28,6 +28,11 @@
         .dot {
             position: absolute;
             left: 50%;
+            top: 50%;
+            width: 3px;
+            height: 3px;
+            background: url(../images/dot.jpg) no-repeat center;
+            background-size: contain;
         }
         .subscribe, .share {
             display: inline-block;
@@ -40,20 +45,25 @@
         .subscribe { background-image: url(../images/sprites/plus.png); }
         .share { background-image: url(../images/sprites/share.png); }
     }
-    .description.ellipsis {
-        height: 40px;
+    .description {
         position: relative;
-        overflow: hidden;
-        &::after {
-            content: "...";
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            height: 20px;
-            width: 10em;
-            padding-left: 3px;
-            background-color: #fff;
-        }
+    }
+    .more {
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        right: 3px;
+        color: $brand-success;
+        display: hidden;
+        padding-top: 3px;
+        padding-right: 12px;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: auto 12px;
+        background-image: url(../images/sprites/enter.png);
+    }
+    .description.ellipsis .more {
+        display: inline-block;
     }
     .store {
         padding: 15px;

@@ -13,14 +13,28 @@
     });
 
     var BrandView = Amour.ModelView.extend({
+        events: {
+            'click .more': 'showMore'
+        },
         template: App.getTemplate('brand-detail'),
         render: function() {
             Amour.ModelView.prototype.render.call(this);
             var h = this.$('.description').height();
             if (h > 50) {
-                // this.$('.description').addClass('ellipsis');
+                var desc = this.model.get('description').substr(0, $(window).width() / 10);
+                this.$('.desc').text(desc + ' ......');
+                this.$('.description').addClass('ellipsis');
             }
             return this;
+        },
+        showMore: function() {
+            $('#desc-full')
+            .find('h4').text('品牌介绍').end()
+            .find('article').text(this.model.get('description')).end()
+            .removeClass('invisible')
+            .one('click', function() {
+                $(this).addClass('invisible');
+            });
         }
     });
 
@@ -79,10 +93,12 @@
                 data: { id: brandId }
             });
             this.products.fetch({
+                global: false,
                 dataType: 'jsonp',
                 data: { id: brandId, start: 0, size: 99 }
             });
             this.topics.fetch({
+                global: false,
                 dataType: 'jsonp',
                 data: { id: brandId, start: 0, size: 99 }
             });

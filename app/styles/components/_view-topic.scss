@@ -17,6 +17,11 @@
         .dot {
             position: absolute;
             left: 50%;
+            top: 50%;
+            width: 3px;
+            height: 3px;
+            background: url(../images/dot.jpg) no-repeat center;
+            background-size: contain;
         }
         .description {
             color: #999;

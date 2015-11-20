@@ -110,6 +110,14 @@
         </section>
     </div>
 
+    <a id="apppromo" href="app.html"></a>
+
+    <div id="desc-full" class="invisible">
+        <h4 class="text-center"></h4>
+        <article class="text-justify"></article>
+        <div class="x"></div>
+    </div>
+
     <!-- Templates -->
 
     <script id="template-product-detail" type="text/x-handlebars-template">
@@ -121,7 +129,7 @@
             <a class="btn btn-default btn-lg btn-block btn-purchase" href="app.html">￥{{price}} 购买</a>
             <div class="social text-center clearfix">
                 <div class="col-xs-6"><a class="like" href="app.html">收藏</a></div>
-                <div class="dot">·</div>
+                <div class="dot"></div>
                 <div class="col-xs-6"><a class="share" href="app.html">分享</a></div>
             </div>
             <div class="desc-title text-center">商品详情</div>
@@ -137,10 +145,13 @@
         <div class="container-fluid">
             <div class="social text-center clearfix">
                 <div class="col-xs-6"><a class="subscribe" href="app.html">关注</a></div>
-                <div class="dot">·</div>
+                <div class="dot"></div>
                 <div class="col-xs-6"><a class="share" href="app.html">分享</a></div>
             </div>
-            <div class="description">{{{description}}}</div>
+            <div class="description">
+                <div class="desc">{{{description}}}</div>
+                <span class="more">查看更多</span>
+            </div>
         </div>
     </script>
 
@@ -151,7 +162,7 @@
             <div class="social text-center clearfix">
                 <div class="col-xs-6"><a class="comment" href="app.html">评论</a></div>
                 <div class="col-xs-6"><a class="share" href="app.html">分享</a></div>
-                <div class="dot">·</div>
+                <div class="dot"></div>
             </div>
             <div class="description text-justify">{{{description}}}</div>
         </div>
