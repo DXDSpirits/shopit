@@ -1,5 +1,7 @@
 (function() {
 
+    window.WX_OPENID = '00000000000000000000000000000000';
+
     moment.lang('zh-cn');
 
     var lazyResize = _.debounce(function() {
@@ -146,7 +148,6 @@
      * Start application
      */
     App.start = function() {
-        Amour.trigger('ComposerAppReady');
         Backbone.history.start();
     };
 
