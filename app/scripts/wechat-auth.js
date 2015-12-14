@@ -3,7 +3,7 @@
     App.WX_OPENID = Amour.storage.get('WX_OPENID');
 
     var authWechat = function() {
-        var redirect_uri = 'http://oatpie.com/order/';
+        var redirect_uri = 'http://shopit.oatpie.com/order/';
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
         var query = [
             'appid=wx051770c8d3153629',
