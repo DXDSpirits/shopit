@@ -1,7 +1,5 @@
 (function() {
 
-    window.WX_OPENID = '00000000000000000000000000000000';
-
     moment.lang('zh-cn');
 
     var lazyResize = _.debounce(function() {

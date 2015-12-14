@@ -17,7 +17,7 @@
         },
         index: function(path) {
             // this.navigate('home', { replace: true });
-            this.navigate('neworder/3385', { replace: true });
+            this.navigate('address', { replace: true });
         },
         neworder: function(pid) {
             pageRouter.goTo('NewOrder', { productId: pid });

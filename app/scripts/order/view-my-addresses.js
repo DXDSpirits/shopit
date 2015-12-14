@@ -69,6 +69,7 @@
                 id = this.options.productId;
                 url = Amour.APIRoot + 'beacon/data/listStoresByItemid.do';
             }
+            return;
             this.address.fetch({
                 dataType: 'jsonp',
                 url: url,
