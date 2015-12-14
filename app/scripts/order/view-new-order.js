@@ -1,78 +1,61 @@
 (function() {
 
-    var mediaSize = 9;
+    var order = new (Amour.Model.extend({
+        //
+    }))({
+        openId: App.WX_OPENID,
+        count: 1
+    });
 
     var ProductModel = Amour.Model.extend({
         url: Amour.APIRoot + 'beacon/data/getItemBycityName.do'
     });
 
-    var ProductSimilarCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listSameCategoryItemsByid.do'
-    });
-
-    var ProductBrandCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listItemByBid.do'
-    });
-
-    var ProductView = Amour.ModelView.extend({
-        template: App.getTemplate('product-detail')
-    });
-
-    var MediasListView = Amour.CollectionView.extend({
-        ModelView: Amour.ModelView.extend({
-            events: { 'click': 'viewDetail' },
-            className: 'media-item',
-            template: '<div class="img" data-bg-src="{{apiFullpath img}}"></div><div class="name">{{name}}</div><div>￥{{price}}</div>',
-            viewDetail: function() {
-                App.router.navigate('product/' + this.model.id);
-            }
-        })
+    var QualityView = Amour.ModelView.extend({
+        model: order,
+        events: {
+            'click .plus': 'increaseQuality',
+            'click .minus': 'decreaseQuality'
+        },
+        increaseQuality: function() {
+            order.set('count', Math.min(order.get('count') + 1, 10));
+        },
+        decreaseQuality: function() {
+            order.set('count', Math.max(order.get('count') - 1, 0));
+        },
+        render: function() {
+            this.$('.quality').text(order.get('count'));
+        }
     });
 
     App.Pages.NewOrder = new (App.PageView.extend({
         events: {
-            'click .store .btn': 'viewStores'
+            'click .input-item.menu > .input-content': 'expandInput',
+            'click .input-item.menu.expand > .fa': 'unExpandInput'
         },
         initPage: function() {
             this.product = new ProductModel();
-            this.similarProducts = new ProductSimilarCollection();
-            this.brandProducts = new ProductBrandCollection();
+            this.order = order;
             this.views = {
-                product: new ProductView({
-                    model: this.product,
-                    el: this.$('.product-wrapper')
-                }),
-                similarProducts: new MediasListView({
-                    collection: this.similarProducts,
-                    el: this.$('.similar-products .media-list')
-                }),
-                brandProducts: new MediasListView({
-                    collection: this.brandProducts,
-                    el: this.$('.brand-products .media-list')
-                })
+                quality: new QualityView({ el: this.$('.input-item-quality') })
             };
+            this.$('.input-item').on('expand', function() {
+                $(this).addClass('expand').siblings().addClass('hidden');
+            }).on('unexpand', function() {
+                $(this).removeClass('expand').siblings().removeClass('hidden');;
+            });
         },
-        viewStores: function() {
-            App.router.navigate(['product', this.product.id, 'address'].join('/'));
+        expandInput: function(e) {
+            $(e.currentTarget).closest('.input-item').trigger('expand');
+        },
+        unExpandInput: function(e) {
+            $(e.currentTarget).closest('.input-item').trigger('unexpand');
         },
         render: function() {
             var productId = this.options.productId;
-            var self = this;
             this.product.fetch({
                 dataType: 'jsonp',
-                data: { id: productId },
-                success: function(model) {
-                    var brandId = self.product.get('brand').id;
-                    self.brandProducts.fetch({
-                        dataType: 'jsonp',
-                        data: { id: brandId, start: 0, size: mediaSize }
-                    });
-                    self.$('.store').toggleClass('hidden', model.get('online') == 1);
-                }
-            });
-            this.similarProducts.fetch({
-                dataType: 'jsonp',
-                data: { id: productId, size: mediaSize }
+                data: { id: productId }
             });
         }
     }))({el: $('#view-new-order')});
