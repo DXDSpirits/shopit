@@ -19,11 +19,19 @@
 
     var getOpenIDbyCode = function() {
         var code = location.query.code;
-        var data;
+        var data = App.encryptJSON({
+            code: code
+        });
         var auth = new(Amour.Model.extend({
             url: Amour.APIRoot + 'beacon/pay/getopenIdByWx.do'
-        }))({
+        }))();
+        auth.save({
             data: data
+        }, {
+            dataType: 'jsonp',
+            success: function(model) {
+                alert(model.toJSON());
+            }
         });
         console.log(code);
     };
