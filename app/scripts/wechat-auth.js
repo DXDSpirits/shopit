@@ -23,22 +23,22 @@
             code: code
         });
         var auth = new(Amour.Model.extend({
-            url: Amour.APIRoot + 'beacon/pay/getopenIdByWx.do'
+            url: Amour.APIRootSecure + 'beacon/pay/getopenIdByWx.do'
         }))();
         auth.save({
             data: data
         }, {
-            dataType: 'jsonp',
+            // dataType: 'jsonp',
             success: function(model) {
                 alert(model.toJSON());
             }
         });
-        console.log(code);
     };
 
     if (location.query.code) {
         getOpenIDbyCode();
     } else if (!App.WX_OPENID) {
+        App.WX_OPENID = '00000000000000000000000000000000';
         if (/^\/order\/?$/.test(location.pathname)) {
             authWechat();
         }
