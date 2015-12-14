@@ -104,7 +104,7 @@ gulp.task('html', function() {
             searchPath: '{.tmp,app}'
         }))
         // Concatenate and minify JavaScript
-        .pipe($.if('*.js', $.uglify({
+        .pipe($.if(['*.js', '!scripts/forge.min.js'], $.uglify({
             preserveComments: 'some'
         })))
         // Remove any unused CSS
