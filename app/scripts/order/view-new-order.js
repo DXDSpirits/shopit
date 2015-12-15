@@ -7,9 +7,29 @@
     };
 
     var order = new (Amour.Model.extend({
-        //
+        submitOrder: function() {
+            this.set({
+                subject: product.get('name'),
+                body: product.get('description'),
+                item_id: product.get('id'),
+                amount: (product.get('offPrice') || product.get('price')) * this.get('count') * 100,
+            }, {
+                silent: true
+            });
+            var data = App.encryptJSON(this.toJSON());
+            var newOrder = new Amour.Model();
+            newOrder.save({
+                data: data
+            }, {
+                url: Amour.APIRootSecure + 'beacon/um/submitOrderByWx.do',
+                success: function() {
+                    console.log(newOrder.toJSON());
+                }
+            });
+        }
     }))({
         openId: App.WX_OPENID,
+        client_ip: '0.0.0.0',
         channel: 'wx_pub',
         count: 1
     });
@@ -216,10 +236,10 @@
         },
         initModelView: function() {},
         saveRemark: function() {
-            order.set('remark', this.$('textarea').val() || '');
+            order.set('remarks', this.$('textarea').val() || '无');
         },
         render: function() {
-            this.$('.input-content').text(order.get('remark'));
+            this.$('.input-content').text(order.get('remarks'));
         }
     }))({
         el: $('#order-input-remark')
@@ -227,7 +247,8 @@
 
     App.Pages.NewOrder = new (App.PageView.extend({
         events: {
-            'click .input-item.menu > .input-content, .input-item.menu > .fa': 'toggleInput'
+            'click .input-item.menu > .input-content, .input-item.menu > .fa': 'toggleInput',
+            'click .btn-payable': 'payable'
         },
         initPage: function() {
             this.$('.input-item').on('expand', function() {
@@ -244,6 +265,9 @@
                 $input.trigger('expand');
             }
         },
+        payable: function() {
+            order.submitOrder();
+        },
         render: function() {
             var productId = this.options.productId;
             product.fetch({
@@ -254,7 +278,7 @@
                 }
             });
             addresses.fetch({
-                // dataType: 'jsonp',
+                // dataType: 'jsonp'
             });
         }
     }))({el: $('#view-new-order')});
