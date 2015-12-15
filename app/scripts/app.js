@@ -91,6 +91,24 @@
         return $('#template-' + name).html();
     };
 
+    App.securePost = function(url, data, success) {
+        var dataStr = App.encryptJSON(data);
+        var model = new (Amour.Model.extend({
+            parse: function(response) {
+                return App.decryptJSON(response);
+            }
+        }))();
+        model.save({
+            data: dataStr
+        }, {
+            url: url,
+            dataType: 'html',
+            success: function(model) {
+                success && success(model.toJSON());
+            }
+        });
+    };
+
     /*
      * Ajax events
      */
