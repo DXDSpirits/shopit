@@ -153,25 +153,53 @@
             this.initCityList();
         },
         initCityList: function() {
+            var fillProvinces = function(provinces) {
+                var $provinces = _.map(provinces, function(item) {
+                    return $('<option></option>').text(item.name).attr('val', item.name).data('cities', item.cities);
+                });
+                this.$('select[name="province"]').html($provinces).prepend('<option>省</option>');
+            }
+            var fillCities = function(cities) {
+                var $cities = _.map(cities, function(item) {
+                    return $('<option></option>').text(item.name).attr('val', item.name).data('areas', item.areas);
+                });
+                this.$('select[name="city"]').html($cities); //.prepend('<option>市</option>');
+            }
+            var fillAreas = function(areas) {
+                var $areas = _.map(areas, function(item) {
+                    return $('<option></option>').text(item.name).attr('val', item.name);
+                });
+                this.$('select[name="area"]').html($areas); //.prepend('<option>区</option>');
+            }
+            this.$('select[name="province"]').on('change', function() {
+                var cities = $(this).find('option:selected').data('cities') || [];
+                fillCities(cities);
+                $(this).siblings('select[name="city"]').trigger('change');
+            });
+            this.$('select[name="city"]').on('change', function() {
+                var areas = $(this).find('option:selected').data('areas') || [];
+                fillAreas(areas);
+            });
+            fillProvinces(App.CityData.provinces);
         },
         readyToEditAddress: function(address) {
             this.editing = address;
             this.$('input[name="receiver"]').val(address.get('receiver'));
             this.$('input[name="phone"]').val(address.get('phone'));
             this.$('input[name="address"]').val(address.get('address'));
-            this.$('input[name="province"]').val(address.get('province'));
-            this.$('input[name="city"]').val(address.get('city'));
-            this.$('input[name="area"]').val(address.get('area'));
+            this.$('select[name="province"]').val(address.get('province')).trigger('change');
+            this.$('select[name="city"]').val(address.get('city')).trigger('change');
+            this.$('select[name="area"]').val(address.get('area'));
             addressView.showNewAddr();
         },
         getAddressData: function() {
             var newAddr = {};
-            newAddr.receiver = this.$('input[name="receiver"]').val() || '收件人';
-            newAddr.phone    = this.$('input[name="phone"]').val()    || '手机';
-            newAddr.province = this.$('input[name="province"]').val() || '北京市';
-            newAddr.city     = this.$('input[name="city"]').val()     || '北京市';
-            newAddr.area     = this.$('input[name="area"]').val()     || '朝阳区';
-            newAddr.address  = this.$('input[name="address"]').val()  || '地址';
+            newAddr.receiver = this.$('input[name="receiver"]').val()  || '收件人';
+            newAddr.phone    = this.$('input[name="phone"]').val()     || '手机';
+            newAddr.address  = this.$('input[name="address"]').val()   || '地址';
+            newAddr.province = this.$('select[name="province"]').val() || '省';
+            newAddr.city     = this.$('select[name="city"]').val()     || '市';
+            newAddr.area     = this.$('select[name="area"]').val()     || '区';
             return newAddr;
         },
         saveAddress: function() {
