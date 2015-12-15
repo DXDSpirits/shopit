@@ -65,7 +65,7 @@ $wrapper-bg: #f4f4f4;
             opacity: 0;
         }
     }
-    &["data-navbar-header"] {
+    &[data-navbar-header] {
         padding-top: $navbar-height;
     }
 }
@@ -74,6 +74,33 @@ $wrapper-bg: #f4f4f4;
     background-color: #fff;
     @include position(absolute, 0 0 auto 0);
     height: $navbar-height;
+    @include user-select(none);
+    @include clearfix();
+    text-align: center;
+    .btn-link {
+        position: relative;
+        height: $navbar-height;
+        line-height: $navbar-height - 12px - 2px;
+        > .iconfont, > .fa {
+            line-height: $navbar-height - 12px - 2px;
+            font-size: 22px;
+        }
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-width: 1px;
+        // color: $navbar-text-color;
+        // &:hover, &:focus, &:active {
+        //     color: lighten($navbar-bg, 10%);
+        // }
+    }
+    .navbar-body {
+        @include position(absolute, 0 15% 0 15%);
+        .navbar-title {
+            position: relative;
+            font-size: 16px;
+            line-height: $navbar-height;
+        }
+    }
 }
 
 // Animations
