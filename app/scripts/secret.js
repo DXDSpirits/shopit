@@ -5,6 +5,7 @@
     App.encryptJSON = function(data) {
         // msg = '{\n  "channel" : "alipay",\n  "amount" : "100"\n}';
         var msg = JSON.stringify(data);
+        msg = forge.util.encodeUtf8(msg);
         var cipher = forge.cipher.createCipher('AES-ECB', key);
         cipher.start();
         cipher.update(forge.util.createBuffer(msg));
@@ -23,6 +24,7 @@
         decipher.update(forge.util.createBuffer(decode));
         decipher.finish();
         var decrypted = decipher.output.data;
+        decrypted = forge.util.decodeUtf8(decrypted);
         var decryptedData = JSON.parse(decrypted);
         // console.log(decryptedData);
         return decryptedData;
