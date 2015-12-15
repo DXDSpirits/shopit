@@ -44,6 +44,7 @@ $page-switch-duration: 0.35s;
 
 // .view = header + .wrapper + footer
 
+$navbar-height: 20px + (12px * 2);
 $wrapper-bg: #f4f4f4;
 
 .view {
@@ -64,12 +65,22 @@ $wrapper-bg: #f4f4f4;
             opacity: 0;
         }
     }
+    &["data-navbar-header"] {
+        padding-top: $navbar-height;
+    }
+}
+
+.header-navbar {
+    background-color: #fff;
+    @include position(absolute, 0 0 auto 0);
+    height: $navbar-height;
 }
 
 // Animations
 
 .view-hidden {
-    > .wrapper {
+    > .wrapper,
+    > .header-navbar {
         display: none;
     }
 }
@@ -79,6 +90,9 @@ $wrapper-bg: #f4f4f4;
     > .wrapper {
         @include animation(slideinfromright $page-switch-duration ease-in-out);
         @include animation-fill-mode(forwards);
+    }
+    > .header-navbar {
+        @include animation(fadeIn $page-switch-duration linear);
     }
     &.view-next-reverse {
         z-index: 0;
@@ -93,6 +107,9 @@ $wrapper-bg: #f4f4f4;
     > .wrapper {
         @include animation(slideouttoleft $page-switch-duration ease-in-out);
         @include animation-fill-mode(forwards);
+    }
+    > .header-navbar {
+        @include animation(fadeOut $page-switch-duration linear);
     }
     &.view-prev-reverse {
         z-index: 1;

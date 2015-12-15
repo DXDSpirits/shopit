@@ -1,4 +1,10 @@
 
 #view-order-detail {
-
+    > .header-navbar {
+        background-color: green;
+    }
+    > .wrapper {
+        padding: 15px;
+        background-color: blue;
+    }
 }
