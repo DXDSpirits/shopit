@@ -13,7 +13,21 @@
     }))();
 
     var addresses = new (Amour.Collection.extend({
-        url: Amour.APIRootSecure + 'beacon/um/listAddressByWx.do'
+        url: Amour.APIRootSecure + 'beacon/um/listAddressByWx.do',
+        addAddress: function(addressData) {
+            addressData.openId = App.WX_OPENID;
+            var address = new Amour.Model(addressData);
+            var queryString = _.map(addressData, function(val, key) {
+                return key + '=' + val;
+            }).join('&');
+            var self = this;
+            address.save({}, {
+                url: Amour.APIRootSecure + 'beacon/um/addAddressByWx.do?' + queryString,
+                success: function() {
+                    self.add(address);
+                }
+            });
+        }
     }))();
 
     var OrderInputView = Amour.ModelView.extend({ model: order });
@@ -70,24 +84,49 @@
 
     var addressView = new (OrderInputView.extend({
         events: {
-            'expand': '',
+            'click .address-add': 'showNewAddr',
+            'click .menu-new-addr .btn-confirm': 'addAddress',
+            'click .menu-new-addr .btn-cancel': 'closeNewAddr'
         },
         initModelView: function() {
             this.addressesView = new (Amour.CollectionView.extend({
                 ModelView: Amour.ModelView.extend({
+                    events: { 'click': 'chooseAddress' },
                     className: 'address-item',
                     template: '<div>{{receiver}} {{phone}}</div>' +
                               '<div>{{province}} {{city}} {{area}}</div>' +
                               '<div>{{address}}</div>' +
-                              '<span class="check fa fa-check"></span>'
+                              '<span class="check fa fa-check"></span>',
+                    chooseAddress: function() {
+                        this.addClass('selected').siblings().removeClass('selected');
+                        order.set({
+                            'receiver': this.model.get('receiver'),
+                            'phone': this.model.get('phone'),
+                            'address': this.model.get('address')
+                        });
+                    }
                 })
             }))({
                 collection: addresses
             });
         },
-        render: function() {
-
-        }
+        addAddress: function() {
+            var newAddr = {};
+            newAddr.receiver = this.$('input[name="receiver"]').val();
+            newAddr.phone = this.$('input[name="phone"]').val();
+            newAddr.province = this.$('input[name="province"]').val();
+            newAddr.city = this.$('input[name="city"]').val();
+            newAddr.area = this.$('input[name="area"]').val();
+            newAddr.address = this.$('input[name="address"]').val();
+            addresses.addAddress(newAddr);
+        },
+        showNewAddr: function() {
+            this.$('.menu-new-addr').removeClass('invisible');
+        },
+        hideNewAddr: function() {
+            this.$('.menu-new-addr').addClass('invisible');
+        },
+        render: function() {}
     }))({
         el: $('#order-input-address')
     });

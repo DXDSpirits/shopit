@@ -67,6 +67,32 @@
                                 <div class="pull-right plus">+</div>
                             </div>
                         </div>
+                        <div class="menu-content menu-new-addr invisible">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="receiver" placeholder="收货人">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="tel" name="phone" placeholder="电话">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="province">
+                                    <option>上海</option>
+                                </select>
+                                <select class="form-control" name="city">
+                                    <option>上海</option>
+                                </select>
+                                <select class="form-control" name="area">
+                                    <option>杨浦</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="address" placeholder="详细地址">
+                            </div>
+                            <footer>
+                                <button class="btn btn-outline btn-cancel">取消</button>
+                                <button class="btn btn-default btn-confirm">保存</button>
+                            </footer>
+                        </div>
                     </div>
                     <div class="input-item menu" id="order-input-payment">
                         <span class="input-label">支付</span>
@@ -144,6 +170,7 @@
     <script src="/scripts/pageview.js"></script>
     <script src="/scripts/wechat-auth.js"></script>
     <script src="/scripts/order/router.js"></script>
+    <script src="/scripts/order/citylist.js"></script>
     <script src="/scripts/order/view-new-order.js"></script>
     <script src="/scripts/order/view-my-addresses.js"></script>
     <script src="/scripts/appstart.js"></script>
