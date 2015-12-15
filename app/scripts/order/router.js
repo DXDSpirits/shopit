@@ -12,8 +12,8 @@
         },
         initialize: function(){
             this.route('*path', 'index');
-            this.route(/neworder\/(\d+)/, 'neworder');
-            this.route(/order\/(\d+)/, 'orderDetail');
+            this.route(/^neworder\/(\d+)$/, 'neworder');
+            this.route(/^order\/(\d+)$/, 'orderDetail');
             this.route('order', 'order');
         },
         index: function(path) {
