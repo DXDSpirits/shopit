@@ -13,7 +13,8 @@
         initialize: function(){
             this.route('*path', 'index');
             this.route(/neworder\/(\d+)/, 'neworder');
-            this.route(/address/, 'address');
+            this.route(/order\/(\d+)/, 'orderDetail');
+            this.route('order', 'order');
         },
         index: function(path) {
             // this.navigate('home', { replace: true });
@@ -22,8 +23,11 @@
         neworder: function(pid) {
             pageRouter.goTo('NewOrder', { productId: pid });
         },
-        address: function(bid) {
-            pageRouter.goTo('MyAddresses');
+        order: function() {
+            pageRouter.goTo('MyOrders');
+        },
+        orderDetail: function(oid) {
+            pageRouter.goTo('OrderDetail', { orderId: oid });
         }
     }))();
 
