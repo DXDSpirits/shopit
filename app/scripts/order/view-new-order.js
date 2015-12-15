@@ -1,5 +1,11 @@
 (function() {
 
+    var encodeQueryString = function(data) {
+        return _.map(data, function(val, key) {
+            return key + '=' + val;
+        }).join('&');
+    };
+
     var order = new (Amour.Model.extend({
         //
     }))({
@@ -13,21 +19,7 @@
     }))();
 
     var addresses = new (Amour.Collection.extend({
-        url: Amour.APIRootSecure + 'beacon/um/listAddressByWx.do',
-        addAddress: function(addressData) {
-            addressData.openId = App.WX_OPENID;
-            var address = new Amour.Model(addressData);
-            var queryString = _.map(addressData, function(val, key) {
-                return key + '=' + val;
-            }).join('&');
-            var self = this;
-            address.save({}, {
-                url: Amour.APIRootSecure + 'beacon/um/addAddressByWx.do?' + queryString,
-                success: function() {
-                    self.add(address);
-                }
-            });
-        }
+        url: Amour.APIRootSecure + 'beacon/um/listAddressByWx.do?openId=' + App.WX_OPENID
     }))();
 
     var OrderInputView = Amour.ModelView.extend({ model: order });
@@ -82,43 +74,96 @@
         el: $('#order-input-quality')
     });
 
+    var AddressModelView = Amour.ModelView.extend({
+        events: {
+            'click': 'editAddress',
+            'click .check-wrapper': 'chooseAddress'
+        },
+        className: 'address-item',
+        template: App.getTemplate('address-item'),
+        chooseAddress: function(e) {
+            e.stopPropagation && e.stopPropagation();
+            this.$el.addClass('selected').siblings().removeClass('selected');
+            order.set('address_id', this.model.get('id'));
+        },
+        editAddress: function() {
+            addressView.readyToEditAddress(this.model);
+        }
+    });
+
     var addressView = new (OrderInputView.extend({
         events: {
+            'unexpand': 'hideNewAddr',
             'click .address-add': 'showNewAddr',
-            'click .menu-new-addr .btn-confirm': 'addAddress',
-            'click .menu-new-addr .btn-cancel': 'closeNewAddr'
+            'click .btn-confirm': 'confirmAddress',
+            'click .menu-new-addr .btn-delete': 'deleteAddress',
+            'click .menu-new-addr .btn-save': 'saveAddress'
         },
         initModelView: function() {
             this.addressesView = new (Amour.CollectionView.extend({
-                ModelView: Amour.ModelView.extend({
-                    events: { 'click': 'chooseAddress' },
-                    className: 'address-item',
-                    template: '<div>{{receiver}} {{phone}}</div>' +
-                              '<div>{{province}} {{city}} {{area}}</div>' +
-                              '<div>{{address}}</div>' +
-                              '<span class="check fa fa-check"></span>',
-                    chooseAddress: function() {
-                        this.addClass('selected').siblings().removeClass('selected');
-                        order.set({
-                            'receiver': this.model.get('receiver'),
-                            'phone': this.model.get('phone'),
-                            'address': this.model.get('address')
-                        });
-                    }
-                })
+                ModelView: AddressModelView
             }))({
-                collection: addresses
+                collection: addresses,
+                el: this.$('.address-list')
             });
         },
-        addAddress: function() {
+        readyToEditAddress: function(address) {
+            this.editing = address;
+            this.showNewAddr();
+            this.$('input[name="receiver"]').val(address.get('receiver'));
+            this.$('input[name="phone"]').val(address.get('phone'));
+            this.$('input[name="province"]').val(address.get('province'));
+            this.$('input[name="city"]').val(address.get('city'));
+            this.$('input[name="area"]').val(address.get('area'));
+            this.$('input[name="address"]').val(address.get('address'));
+        },
+        getAddressData: function() {
             var newAddr = {};
-            newAddr.receiver = this.$('input[name="receiver"]').val();
-            newAddr.phone = this.$('input[name="phone"]').val();
-            newAddr.province = this.$('input[name="province"]').val();
-            newAddr.city = this.$('input[name="city"]').val();
-            newAddr.area = this.$('input[name="area"]').val();
-            newAddr.address = this.$('input[name="address"]').val();
-            addresses.addAddress(newAddr);
+            newAddr.receiver = this.$('input[name="receiver"]').val() || '收件人';
+            newAddr.phone    = this.$('input[name="phone"]').val()    || '手机';
+            newAddr.province = this.$('input[name="province"]').val() || '北京市';
+            newAddr.city     = this.$('input[name="city"]').val()     || '北京市';
+            newAddr.area     = this.$('input[name="area"]').val()     || '朝阳区';
+            newAddr.address  = this.$('input[name="address"]').val()  || '地址';
+            return newAddr;
+        },
+        saveAddress: function() {
+            var addressData = this.getAddressData();
+            addressData.openId = App.WX_OPENID;
+            if (this.editing) {
+                addressData.id = this.editing.get('id');
+                this.editing.set(addressData);
+                this.editing = null;
+                var addressModel = new Amour.Model();
+                var queryString = encodeQueryString(addressData);
+                addressModel.save({}, {
+                    url: Amour.APIRootSecure + 'beacon/um/updateAddressByWx.do?' + queryString,
+                });
+            } else {
+                var addressModel = new Amour.Model(addressData);
+                var queryString = encodeQueryString(addressData);
+                addressModel.save({}, {
+                    url: Amour.APIRootSecure + 'beacon/um/addAddressByWx.do?' + queryString,
+                    success: function() {
+                        addresses.fetch({ reset: true })
+                    }
+                });
+            }
+            this.hideNewAddr();
+        },
+        deleteAddress: function() {
+            if (this.editing) {
+                var id = this.editing.get('id');
+                this.editing = null;
+                var addressModel = new Amour.Model();
+                addressModel.save({}, {
+                    url: Amour.APIRootSecure + 'beacon/um/deleteAddressByWx.do?id=' + id,
+                    success: function() {
+                        addresses.fetch({ reset: true })
+                    }
+                });
+            }
+            this.hideNewAddr();
         },
         showNewAddr: function() {
             this.$('.menu-new-addr').removeClass('invisible');
@@ -126,7 +171,15 @@
         hideNewAddr: function() {
             this.$('.menu-new-addr').addClass('invisible');
         },
-        render: function() {}
+        confirmAddress: function() {
+            this.$el.trigger('unexpand');
+        },
+        render: function() {
+            var address = addresses.get(order.get('address_id'));
+            if (address) {
+                this.$('.input-content').text(address.get('area') + address.get('address'));
+            }
+        }
     }))({
         el: $('#order-input-address')
     });
@@ -194,7 +247,7 @@
         render: function() {
             var productId = this.options.productId;
             product.fetch({
-                // dataType: 'jsonp',
+                dataType: 'jsonp',
                 data: { id: productId },
                 success: function() {
                     sizeView.filterSizes();
@@ -202,7 +255,6 @@
             });
             addresses.fetch({
                 // dataType: 'jsonp',
-                data: { openId: App.WX_OPENID }
             });
         }
     }))({el: $('#view-new-order')});

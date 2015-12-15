@@ -66,6 +66,9 @@
                                 <div class="pull-left">添加新地址</div>
                                 <div class="pull-right plus">+</div>
                             </div>
+                            <footer>
+                                <button class="btn btn-default btn-block btn-confirm">确定</button>
+                            </footer>
                         </div>
                         <div class="menu-content menu-new-addr invisible">
                             <div class="form-group">
@@ -75,22 +78,16 @@
                                 <input class="form-control" type="tel" name="phone" placeholder="电话">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="province">
-                                    <option>上海</option>
-                                </select>
-                                <select class="form-control" name="city">
-                                    <option>上海</option>
-                                </select>
-                                <select class="form-control" name="area">
-                                    <option>杨浦</option>
-                                </select>
+                                <select class="form-control" name="province"></select>
+                                <select class="form-control" name="city"></select>
+                                <select class="form-control" name="area"></select>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="text" name="address" placeholder="详细地址">
                             </div>
                             <footer>
-                                <button class="btn btn-outline btn-cancel">取消</button>
-                                <button class="btn btn-default btn-confirm">保存</button>
+                                <button class="btn btn-outline btn-delete">删除</button>
+                                <button class="btn btn-default btn-save">保存</button>
                             </footer>
                         </div>
                     </div>
@@ -141,7 +138,12 @@
     <!-- Templates -->
 
     <script id="template-address-item" type="text/x-handlebars-template">
-        <div></div>
+        <div>{{receiver}} {{phone}}</div>
+        <div>{{province}} {{city}} {{area}}</div>
+        <div>{{address}}</div>
+        <div class="check-wrapper">
+            <span class="check fa fa-check"></span>
+        </div>
     </script>
 
     <!-- build:js /scripts/vendor.min.js -->
