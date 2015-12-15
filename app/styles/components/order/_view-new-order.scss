@@ -2,6 +2,9 @@
 $itemH: 44px;
 
 #view-new-order {
+    .form-control {
+        border-color: transparent;
+    }
     .wrapper {
         background-color: #fff;
         > footer {
@@ -26,7 +29,7 @@ $itemH: 44px;
         }
         &.menu.expand {
             .input-content {
-                visibility: hidden;
+                opacity: 0;
             }
             > .fa {
                 @include transform(rotate(180deg));
@@ -50,14 +53,57 @@ $itemH: 44px;
     .input-content {
         height: 100%;
         text-align: right;
-        color: #aaa;
+        color: #bbb;
         line-height: $itemH;
     }
 }
 
-#view-new-order .input-item-quality {
-    line-height: 1;
-    padding-right: 8px;
+#order-input-size {
+    .menu-content {}
+    .circles {
+        @include position(absolute, 50% 0 auto 0);
+        margin-top: -40px;
+        text-align: center;
+        .circle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            line-height: 1;
+            padding-top: 22px;
+            font-size: 18px;
+            border-radius: 50%;
+            border: 1px solid $gray-lighter;
+            color: $gray-light;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                height: 1px;
+                background-color: $gray-lighter;
+                @include transform(rotate(-45deg));
+            }
+            &.available {
+                &::after {
+                    display: none;
+                }
+                &.selected, &:active {
+                    background-color: #000;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+#order-input-quality {
+    &.input-item {
+        line-height: 1;
+        padding-right: 8px;
+    }
     .minus, .plus {
         cursor: pointer;
         display: inline-block;
@@ -84,5 +130,79 @@ $itemH: 44px;
         width: 20px;
         text-align: center;
         color: #000;
+    }
+}
+
+#order-input-address {
+    .address-add {
+        border-bottom: 1px solid #f5f5f5;
+        padding: 12px 15px;
+        .plus {
+            font-size: 20px;
+        }
+    }
+    .address-item {
+        border-bottom: 1px solid #f5f5f5;
+        padding: 12px 15px;
+        .check {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            height: 20px;
+            width: 20px;
+            margin-top: -10px;
+            padding: 2px;
+            border-radius: 50%;
+            color: #000;
+            border: 1px solid #000;
+        }
+        &.selected {
+            .check {
+                color: #fff;
+                background-color: #000;
+            }
+        }
+    }
+}
+
+#order-input-payment {
+    .channel {
+        border-bottom: 1px solid #f5f5f5;
+        position: relative;
+        img {
+            margin: 5px 20px;
+            display: inline-block;
+            vertical-align: middle;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+        }
+        .name {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .check {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            height: 20px;
+            width: 20px;
+            padding: 2px;
+            border-radius: 50%;
+            color: #000;
+            border: 1px solid #000;
+        }
+        &.selected {
+            .check {
+                color: #fff;
+                background-color: #000;
+            }
+        }
+    }
+}
+
+#order-input-remark {
+    textarea {
+        padding: 20px 15px;
     }
 }

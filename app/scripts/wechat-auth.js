@@ -1,6 +1,7 @@
 (function() {
 
     App.WX_OPENID = Amour.storage.get('WX_OPENID');
+    App.WX_OPENID = 'oQyIgtyKQH-8irY-H_JVwIdMWK4E';
 
     var authWechat = function() {
         var redirect_uri = 'http://shopit.oatpie.com/order/';

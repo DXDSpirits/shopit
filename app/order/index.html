@@ -40,13 +40,15 @@
         <section class="view view-hidden" id="view-new-order">
             <div class="wrapper">
                 <div class="input-wrapper">
-                    <div class="input-item input-item-size menu">
+                    <div class="input-item menu" id="order-input-size">
                         <span class="input-label">尺码</span>
                         <div class="input-content"></div>
                         <span class="fa fa-angle-down"></span>
-                        <div class="menu-content"></div>
+                        <div class="menu-content">
+                            <div class="circles"></div>
+                        </div>
                     </div>
-                    <div class="input-item input-item-quality">
+                    <div class="input-item" id="order-input-quality">
                         <span class="input-label">数量</span>
                         <div class="input-content">
                             <span class="minus">-</span>
@@ -54,27 +56,48 @@
                             <span class="plus">+</span>
                         </div>
                     </div>
-                    <div class="input-item input-item-address menu">
+                    <div class="input-item menu" id="order-input-address">
                         <span class="input-label">地址</span>
                         <div class="input-content"></div>
                         <span class="fa fa-angle-down"></span>
-                        <div class="menu-content"></div>
+                        <div class="menu-content">
+                            <div class="address-list"></div>
+                            <div class="address-add clearfix">
+                                <div class="pull-left">添加新地址</div>
+                                <div class="pull-right plus">+</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-item input-item-payment menu">
+                    <div class="input-item menu" id="order-input-payment">
                         <span class="input-label">支付</span>
-                        <div class="input-content"></div>
+                        <div class="input-content">微信钱包</div>
                         <span class="fa fa-angle-down"></span>
-                        <div class="menu-content"></div>
+                        <div class="menu-content">
+                            <div class="payment-channels">
+                                <div class="channel selected" data-channel="wx_pub">
+                                    <img src="../images/img-broken.png">
+                                    <span class="name">微信钱包</span>
+                                    <span class="check fa fa-check"></span>
+                                </div>
+                                <div class="channel" data-channel="alipay_wap">
+                                    <img src="../images/img-broken.png">
+                                    <span class="name">支付宝</span>
+                                    <span class="check fa fa-check"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-item input-item-shipping">
+                    <div class="input-item" id="order-input-shipping">
                         <span class="input-label">运费</span>
                         <div class="input-content">￥10</div>
                     </div>
-                    <div class="input-item input-item-remark menu">
+                    <div class="input-item menu" id="order-input-remark">
                         <span class="input-label">备注</span>
                         <div class="input-content"></div>
                         <span class="fa fa-angle-down"></span>
-                        <div class="menu-content"></div>
+                        <div class="menu-content">
+                            <textarea class="form-control" placeholder="请输入" rows="10"></textarea>
+                        </div>
                     </div>
                 </div>
                 <footer>
