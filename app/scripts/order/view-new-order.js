@@ -107,7 +107,7 @@
             order.set('address_id', this.model.get('id'));
         },
         editAddress: function() {
-            addressView.readyToEditAddress(this.model);
+            newAddressView.readyToEditAddress(this.model);
         }
     });
 
@@ -115,9 +115,7 @@
         events: {
             'unexpand': 'hideNewAddr',
             'click .address-add': 'showNewAddr',
-            'click .btn-confirm': 'confirmAddress',
-            'click .menu-new-addr .btn-delete': 'deleteAddress',
-            'click .menu-new-addr .btn-save': 'saveAddress'
+            'click .btn-confirm': 'confirmAddress'
         },
         initModelView: function() {
             this.addressesView = new (Amour.CollectionView.extend({
@@ -127,15 +125,44 @@
                 el: this.$('.address-list')
             });
         },
+        showNewAddr: function() {
+            this.$('.menu-new-addr').removeClass('invisible');
+        },
+        hideNewAddr: function() {
+            this.$('.menu-new-addr').addClass('invisible');
+        },
+        confirmAddress: function() {
+            this.$el.trigger('unexpand');
+        },
+        render: function() {
+            var address = addresses.get(order.get('address_id'));
+            if (address) {
+                this.$('.input-content').text(address.get('area') + address.get('address'));
+            }
+        }
+    }))({
+        el: $('#order-input-address')
+    });
+
+    var newAddressView = new (Amour.View.extend({
+        events: {
+            'click .btn-delete': 'deleteAddress',
+            'click .btn-save': 'saveAddress'
+        },
+        initView: function() {
+            this.initCityList();
+        },
+        initCityList: function() {
+        },
         readyToEditAddress: function(address) {
             this.editing = address;
-            this.showNewAddr();
             this.$('input[name="receiver"]').val(address.get('receiver'));
             this.$('input[name="phone"]').val(address.get('phone'));
+            this.$('input[name="address"]').val(address.get('address'));
             this.$('input[name="province"]').val(address.get('province'));
             this.$('input[name="city"]').val(address.get('city'));
             this.$('input[name="area"]').val(address.get('area'));
-            this.$('input[name="address"]').val(address.get('address'));
+            addressView.showNewAddr();
         },
         getAddressData: function() {
             var newAddr = {};
@@ -169,7 +196,7 @@
                     }
                 });
             }
-            this.hideNewAddr();
+            addressView.hideNewAddr();
         },
         deleteAddress: function() {
             if (this.editing) {
@@ -183,25 +210,10 @@
                     }
                 });
             }
-            this.hideNewAddr();
+            addressView.hideNewAddr();
         },
-        showNewAddr: function() {
-            this.$('.menu-new-addr').removeClass('invisible');
-        },
-        hideNewAddr: function() {
-            this.$('.menu-new-addr').addClass('invisible');
-        },
-        confirmAddress: function() {
-            this.$el.trigger('unexpand');
-        },
-        render: function() {
-            var address = addresses.get(order.get('address_id'));
-            if (address) {
-                this.$('.input-content').text(address.get('area') + address.get('address'));
-            }
-        }
     }))({
-        el: $('#order-input-address')
+        el: $('#order-input-address .menu-new-addr')
     });
 
     var paymentView = new (OrderInputView.extend({
