@@ -8,23 +8,18 @@
 
     var order = new (Amour.Model.extend({
         submitOrder: function() {
+            var amount = (product.get('offPrice') || product.get('price')) * this.get('count') * 100 + 10 * 100;
             this.set({
                 subject: product.get('name'),
-                body: product.get('description'),
+                body: product.get('name'),
                 item_id: product.get('id'),
-                amount: (product.get('offPrice') || product.get('price')) * this.get('count') * 100,
+                amount: amount
             }, {
                 silent: true
             });
-            var data = App.encryptJSON(this.toJSON());
-            var newOrder = new Amour.Model();
-            newOrder.save({
-                data: data
-            }, {
-                url: Amour.APIRootSecure + 'beacon/um/submitOrderByWx.do',
-                success: function() {
-                    console.log(newOrder.toJSON());
-                }
+            var url = Amour.APIRootSecure + 'beacon/pay/submitOrderByWx.do';
+            App.securePost(url, this.toJSON(), function(data) {
+                console.log(data);
             });
         }
     }))({
