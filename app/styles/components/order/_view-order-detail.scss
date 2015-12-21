@@ -1,8 +1,24 @@
 
 #view-order-detail {
-    > .header-navbar {
+    > .header-navbar {}
+    > .wrapper {}
+    .order-detail {
+        .line {
+            padding: 10px 15px;
+            border-bottom: 1px solid #fafafa;
+        }
     }
-    > .wrapper {
-        padding: 15px;
+    .summary, .shipment, .system {
+        background-color: #fff;
+        // padding: 15px;
+    }
+    .shipment {
+        .status {
+            color: $brand-success;
+        }
+    }
+    .system {
+        color: #aaa;
+        margin: 10px auto;
     }
 }
