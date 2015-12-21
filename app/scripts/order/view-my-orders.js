@@ -26,12 +26,6 @@
             })
         },
         render: function() {
-            var url = Amour.APIRootSecure + 'beacon/pay/getOrderListByWx.do';
-            App.securePost(url, {
-                openId: App.WX_OPENID
-            }, function(data) {
-                orders.reset(data, { parse: true });
-            });
             orders.reset([{
                 id: 3385, title: '复古牛仔背长裤', size: 'M', count: 3, amount: '999', status: 0,
                 image: 'http://123.57.253.146/images/a88bd3f1765faca77aa4edf910619bb3.jpg',
@@ -39,6 +33,13 @@
                 id: 3386, title: '复古牛仔背长裤', size: 'M', count: 3, amount: '999', status: 1,
                 image: 'http://123.57.253.146/images/a88bd3f1765faca77aa4edf910619bb3.jpg',
             }]);
+            return;
+            var url = Amour.APIRootSecure + 'beacon/pay/getOrderListByWx.do';
+            App.securePost(url, {
+                openId: App.WX_OPENID
+            }, function(data) {
+                orders.reset(data, { parse: true });
+            });
         }
     }))({el: $('#view-my-orders')});
 
