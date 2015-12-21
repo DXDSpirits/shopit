@@ -175,6 +175,12 @@
     </script>
 
     <script id="template-order-item" type="text/x-handlebars-template">
+        <div class="img" data-bg-src="{{image}}"></div>
+        <div class="title">{{title}}</div>
+        <div class="count">{{size}} X {{count}} 件</div>
+        <div class="amount">￥{{amount}}</div>
+        <div class="status status-{{status}}">{{statusName}}</div>
+        <span class="deco fa fa-angle-right"></span>
     </script>
 
     <!-- build:js /scripts/vendor.min.js -->

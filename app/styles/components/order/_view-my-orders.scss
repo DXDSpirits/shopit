@@ -1,8 +1,41 @@
 
 #view-my-orders {
-    > .header-navbar {
-    }
-    > .wrapper {
-        padding: 15px;
+    .header-navbar {}
+    .wrapper {}
+    .order-item {
+        position: relative;
+        height: 140px;
+        padding: 15px 40px 0 120px;
+        margin: 10px;
+        background-color: #fff;
+        > .img {
+            @include position(absolute, 0 auto 0 0);
+            width: 105px;
+        }
+        .title {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .count, .amount {
+            color: #aaa;
+        }
+        .status {
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: $brand-success;
+            &.status-0 {
+                display: inline-block;
+                color: #fff;
+                padding: 2px 5px;
+                background-color: $brand-success;
+                border-radius: 1px;
+            }
+        }
+        .deco {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            font-size: 20px;
+        }
     }
 }
