@@ -37,4 +37,29 @@
         color: #aaa;
         margin: 10px auto;
     }
+    .service {
+        position: relative;
+        color: #aaa;
+        border-top: 1px solid #bbb;
+        padding-top: 20px;
+        margin: 20px 10px 50px;
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            height: 4px;
+            width: 4px;
+            top: 0;
+            border-radius: 50%;
+            background-color: #bbb;
+            @include transform(translate3d(0, -62.5%, 0));
+        }
+        &::before { left: -1px; }
+        &::after { right: -1px; }
+        h4, p {
+            margin-bottom: 1em;
+        }
+        button {
+            margin-top: 30px;
+        }
+    }
 }
