@@ -96,8 +96,7 @@
         var dataStr = App.encryptJSON(data);
         var model = new (Amour.Model.extend({
             parse: function(response) {
-                // response.replace(/\r\n/g, '');
-                return App.decryptJSON(response);
+                return response ? App.decryptJSON(response) : {};
             }
         }))();
         model.save({
