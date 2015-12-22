@@ -158,29 +158,7 @@
                 </div>
             </header>
             <div class="wrapper">
-                <div class="order-detail">
-                    <div class="summary">
-                        <div class="img" data-bg-src=""></div>
-                        <div class="title">{{title}}</div>
-                        <div class="count">{{size}} X {{count}} 件</div>
-                        <div class="amount">￥{{amount}}</div>
-                        <div class="status status-{{status}}">{{statusName}}</div>
-                    </div>
-                    <div class="shipment">
-                        <div class="line clearfix">
-                            <div class="pull-left">戴安娜</div>
-                            <div class="pull-right">18621761807</div>
-                        </div>
-                        <div class="line">北京市 东城区 哈哈哈哈路嘿嘿嘿嘿校区十一号楼走到底左拐</div>
-                        <div class="line">订单状态：<span class="status">待收货/已完成</span></div>
-                        <div class="line">物流信息：顺丰 4984503845</div>
-                    </div>
-                    <div class="system">
-                        <div class="line">订单编号：3284792837489324</div>
-                        <div class="line">创建时间：2015-03-24 12:00:23</div>
-                        <div class="line">付款时间：2015-03-24 12:01:23</div>
-                    </div>
-                </div>
+                <div class="order-detail"></div>
                 <div class="service">服务须知</div>
             </div>
         </section>
@@ -204,6 +182,35 @@
         <div class="amount">￥{{amount}}</div>
         <div class="status status-{{status}}">{{statusName}}</div>
         <span class="deco fa fa-angle-right"></span>
+    </script>
+
+    <script id="template-order-detail" type="text/x-handlebars-template">
+        <div class="summary">
+            <div class="img" data-bg-src="{{imageFullpath}}"></div>
+            <div class="title">{{item.name}}</div>
+            <div class="count">{{size}} X {{count}} 件</div>
+            <div class="amount">￥{{amount}}<br>( 含运费 ￥10 )</div>
+        </div>
+        <div class="shipment">
+            {{#with address}}
+            <div class="line clearfix">
+                <div class="pull-left">{{receiver}}</div>
+                <div class="pull-right">{{phone}}</div>
+            </div>
+            <div class="line">{{province}} {{city}} {{area}} {{address}}</div>
+            {{/with}}
+            <div class="line">订单状态：<span class="status">{{statusName}}</span></div>
+            {{#with logistics}}
+            <div class="line">物流信息：{{vendor}} {{logistics_no}}</div>
+            {{/with}}
+        </div>
+        <div class="system">
+            <div class="line">订单编号：{{order_No}}</div>
+            <div class="line">创建时间：{{createTimeFormat}}</div>
+            {{#if payTime}}
+            <div class="line">付款时间：{{payTimeFormat}}</div>
+            {{/if}}
+        </div>
     </script>
 
     <!-- build:js /scripts/vendor.min.js -->

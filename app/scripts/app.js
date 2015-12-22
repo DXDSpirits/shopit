@@ -91,7 +91,8 @@
         return $('#template-' + name).html();
     };
 
-    App.securePost = function(url, data, success) {
+    App.securePost = function(url, data, success, context) {
+        var ctx = context || this;
         var dataStr = App.encryptJSON(data);
         var model = new (Amour.Model.extend({
             parse: function(response) {
@@ -105,7 +106,7 @@
             url: url,
             dataType: 'html',
             success: function(model) {
-                success && success(model.toJSON());
+                success && success.call(ctx, model.toJSON());
             }
         });
     };

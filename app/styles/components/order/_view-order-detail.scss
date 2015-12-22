@@ -10,7 +10,23 @@
     }
     .summary, .shipment, .system {
         background-color: #fff;
-        // padding: 15px;
+    }
+    .summary {
+        position: relative;
+        height: 150px;
+        padding: 15px 40px 0 120px;
+        background-color: #fff;
+        > .img {
+            @include position(absolute, 0 auto 10px 0);
+            width: 105px;
+        }
+        .title {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .count, .amount {
+            color: #aaa;
+        }
     }
     .shipment {
         .status {
