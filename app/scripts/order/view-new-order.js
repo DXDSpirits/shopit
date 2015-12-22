@@ -20,6 +20,7 @@
             var url = Amour.APIRootSecure + 'beacon/pay/submitOrderByWx.do';
             App.securePost(url, this.toJSON(), function(data) {
                 console.log(data);
+                App.router.navigate('order');
             });
         }
     }))({

@@ -160,7 +160,7 @@
             <div class="wrapper">
                 <div class="order-detail">
                     <div class="summary">
-                        <div class="img" data-bg-src="{{image}}"></div>
+                        <div class="img" data-bg-src=""></div>
                         <div class="title">{{title}}</div>
                         <div class="count">{{size}} X {{count}} 件</div>
                         <div class="amount">￥{{amount}}</div>
@@ -198,8 +198,8 @@
     </script>
 
     <script id="template-order-item" type="text/x-handlebars-template">
-        <div class="img" data-bg-src="{{image}}"></div>
-        <div class="title">{{title}}</div>
+        <div class="img" data-bg-src="{{imageFullpath}}"></div>
+        <div class="title">{{item.name}}</div>
         <div class="count">{{size}} X {{count}} 件</div>
         <div class="amount">￥{{amount}}</div>
         <div class="status status-{{status}}">{{statusName}}</div>

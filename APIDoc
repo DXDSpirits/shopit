@@ -192,3 +192,215 @@ URL:baseUrl/beacon/data/listStoresByItemid.do
 URL:baseUrl/beacon/data/listBrandStores.do
 请求参数：
     id: 商品id,
+
+12 订单列表
+{
+    code = 1;
+    response =     {
+        list =         (
+                        {
+                count = 1;
+                id = 6;
+                item =                 {
+                    bid = 6;
+                    "big_Category" = "<null>";
+                    "big_id" = 0;
+                    brand =                     {
+                        category = 16;
+                        contactor = "";
+                        createTime = 1437495361000;
+                        description = "ZARA\U662f\U897f\U73ed\U7259Inditex\U96c6\U56e2(\U80a1\U7968\U4ee3\U7801ITX)\U65d7\U4e0b\U7684\U4e00\U4e2a\U5b50\U516c\U53f8\Uff0c\U5b83\U65e2\U662f\U670d\U88c5\U54c1\U724c\Uff0c\U4e5f\U662f\U4e13\U8425ZARA\U54c1\U724c\U670d\U88c5\U7684\U8fde\U9501\U96f6\U552e\U54c1\U724c\U30021975\U5e74\U8bbe\U7acb\U4e8e\U897f\U73ed\U7259\U7684ZARA\U96b6\U5c5e\U4e8eInditex\U96c6\U56e2\U4e3a\U5168\U7403\U6392\U540d\U7b2c\U4e09\U3001\U897f\U73ed\U7259\U6392\U540d\U7b2c\U4e00\U7684\U670d\U88c5\U5546\Uff0c\U5728\U4e16\U754c\U5404\U573056\U4e2a\U56fd\U5bb6\U5185\Uff0c\U8bbe\U7acb\U8d85\U8fc7\U4e24\U5343\U591a\U5bb6\U7684\U670d\U88c5\U8fde\U9501\U5e97\U3002ZARA\U6df1\U53d7\U5168\U7403\U65f6\U5c1a\U9752\U5e74\U7684\U559c\U7231\Uff0c\U8bbe\U8ba1\U5e08\U54c1\U724c\U7684\U4f18\U5f02\U8bbe\U8ba1\U4ef7\U683c\U5374\U66f4\U4e3a\U4f4e\U5ec9\Uff0c\U7b80\U5355\U6765\U8bf4\U5c31\U662f\U8ba9\U5e73\U6c11\U62e5\U62b1High Fashion\U3002";
+                        follow = 0;
+                        id = 6;
+                        img = "/images/e2dc0b8c42a051b6bf8e057b2f038704.png";
+                        item = 0;
+                        letter = ZARA;
+                        logo = "/images/1fd27c742affe1b2974401a466650264.png";
+                        name = ZARA;
+                        point = 0;
+                        position = "";
+                        priority = 100;
+                        status = active;
+                        topic = 0;
+                    };
+                    brandLogo = "<null>";
+                    brandName = "<null>";
+                    description = "\U725b\U4ed4\U62fc\U63a5 T \U6064\Uff1b\U4eff\U76ae\U53e3\U888b\Uff0c\U5bbd\U677e\U8212\U9002\U3002
+\n\U6a21\U7279\U8eab\U9ad8\Uff1a187 \U5398\U7c73\U3002L \U7801
+\n\U9762\U6599
+\n98% \U68c9, 2% \U6c28\U7eb6
+\n* \U88c5\U9970\U54c1\U9664\U5916";
+                    follow = 0;
+                    id = 3385;
+                    img = "/images/ac78261c16a605e643d5633c622d1dd4.jpg";
+                    img1 = "<null>";
+                    isDiscount = 0;
+                    isShow = 1;
+                    isZouItem = 0;
+                    name = "\U4eff\U76ae\U62fc\U63a5\U53e3\U888b\U4e39\U5b81\U886c\U886b";
+                    offPrice = "299.00";
+                    online = 1;
+                    price = "299.00";
+                    priority = 0;
+                    properties = "17,37,40,47,69";
+                    range = 0;
+                    sellOut = 0;
+                    "sex_id" = 1;
+                    size = m;
+                    stock = 84;
+                    stores = "";
+                    "sub_Categories" = 1;
+                    updateTime = 1446207572000;
+                    url = "http://www.zara.cn/cn/zh/%E6%9C%AC%E5%91%A8%E6%96%B0%E5%93%81/%E7%94%B7%E5%A3%AB/%E6%9F%A5%E7%9C%8B%E5%85%A8%E9%83%A8/%E6%8B%BC%E6%8E%A5%E4%B8%B9%E5%AE%81%E8%A1%AC%E8%A1%AB-c758514p3084553.html";
+                    useType = 0;
+                };
+                "order_No" = 2652878199702528;
+                size = M;
+                status = 0;
+                total = 30900;
+            },
+                        {
+                count = 1;
+                id = 5;
+                item =                 {
+                    bid = 6;
+                    "big_Category" = "<null>";
+                    "big_id" = 0;
+                    brand =                     {
+                        category = 16;
+                        contactor = "";
+                        createTime = 1437495361000;
+                        description = "ZARA\U662f\U897f\U73ed\U7259Inditex\U96c6\U56e2(\U80a1\U7968\U4ee3\U7801ITX)\U65d7\U4e0b\U7684\U4e00\U4e2a\U5b50\U516c\U53f8\Uff0c\U5b83\U65e2\U662f\U670d\U88c5\U54c1\U724c\Uff0c\U4e5f\U662f\U4e13\U8425ZARA\U54c1\U724c\U670d\U88c5\U7684\U8fde\U9501\U96f6\U552e\U54c1\U724c\U30021975\U5e74\U8bbe\U7acb\U4e8e\U897f\U73ed\U7259\U7684ZARA\U96b6\U5c5e\U4e8eInditex\U96c6\U56e2\U4e3a\U5168\U7403\U6392\U540d\U7b2c\U4e09\U3001\U897f\U73ed\U7259\U6392\U540d\U7b2c\U4e00\U7684\U670d\U88c5\U5546\Uff0c\U5728\U4e16\U754c\U5404\U573056\U4e2a\U56fd\U5bb6\U5185\Uff0c\U8bbe\U7acb\U8d85\U8fc7\U4e24\U5343\U591a\U5bb6\U7684\U670d\U88c5\U8fde\U9501\U5e97\U3002ZARA\U6df1\U53d7\U5168\U7403\U65f6\U5c1a\U9752\U5e74\U7684\U559c\U7231\Uff0c\U8bbe\U8ba1\U5e08\U54c1\U724c\U7684\U4f18\U5f02\U8bbe\U8ba1\U4ef7\U683c\U5374\U66f4\U4e3a\U4f4e\U5ec9\Uff0c\U7b80\U5355\U6765\U8bf4\U5c31\U662f\U8ba9\U5e73\U6c11\U62e5\U62b1High Fashion\U3002";
+                        follow = 0;
+                        id = 6;
+                        img = "/images/e2dc0b8c42a051b6bf8e057b2f038704.png";
+                        item = 0;
+                        letter = ZARA;
+                        logo = "/images/1fd27c742affe1b2974401a466650264.png";
+                        name = ZARA;
+                        point = 0;
+                        position = "";
+                        priority = 100;
+                        status = active;
+                        topic = 0;
+                    };
+                    brandLogo = "<null>";
+                    brandName = "<null>";
+                    description = "\U725b\U4ed4\U62fc\U63a5 T \U6064\Uff1b\U4eff\U76ae\U53e3\U888b\Uff0c\U5bbd\U677e\U8212\U9002\U3002
+\n\U6a21\U7279\U8eab\U9ad8\Uff1a187 \U5398\U7c73\U3002L \U7801
+\n\U9762\U6599
+\n98% \U68c9, 2% \U6c28\U7eb6
+\n* \U88c5\U9970\U54c1\U9664\U5916";
+                    follow = 0;
+                    id = 3385;
+                    img = "/images/ac78261c16a605e643d5633c622d1dd4.jpg";
+                    img1 = "<null>";
+                    isDiscount = 0;
+                    isShow = 1;
+                    isZouItem = 0;
+                    name = "\U4eff\U76ae\U62fc\U63a5\U53e3\U888b\U4e39\U5b81\U886c\U886b";
+                    offPrice = "299.00";
+                    online = 1;
+                    price = "299.00";
+                    priority = 0;
+                    properties = "17,37,40,47,69";
+                    range = 0;
+                    sellOut = 0;
+                    "sex_id" = 1;
+                    size = m;
+                    stock = 84;
+                    stores = "";
+                    "sub_Categories" = 1;
+                    updateTime = 1446207572000;
+                    url = "http://www.zara.cn/cn/zh/%E6%9C%AC%E5%91%A8%E6%96%B0%E5%93%81/%E7%94%B7%E5%A3%AB/%E6%9F%A5%E7%9C%8B%E5%85%A8%E9%83%A8/%E6%8B%BC%E6%8E%A5%E4%B8%B9%E5%AE%81%E8%A1%AC%E8%A1%AB-c758514p3084553.html";
+                    useType = 0;
+                };
+                "order_No" = 2652877890953216;
+                size = M;
+                status = 0;
+                total = 30900;
+            }
+        );
+    };
+}
+
+13 订单详情
+{
+    address = {
+        address = "\U67a3\U6797\U524d\U885770\U53f7\U4e2d\U73af\U529e\U516c\U697c";
+        area = "<null>";
+        city = "\U897f\U57ce\U533a";
+        createTime = 1437649584000;
+        id = 9;
+        lastUsed = 1;
+        phone = 13910856537;
+        province = "\U5317\U4eac";
+        receiver = "\U90b5\U9633";
+    };
+    channel = "wx_pub";
+    count = 1;
+    createTime = 1450753791000;
+    expireTime = 1450754691000;
+    freight = 10;
+    id = 5;
+    item = {
+        bid = 6;
+        "big_Category" = "<null>";
+        "big_id" = 0;
+        brand = {
+            category = 16;
+            contactor = "";
+            createTime = 1437495361000;
+            description = "ZARA\U662f\U897f\U73ed\U7259Inditex\U96c6\U56e2(\U80a1\U7968\U4ee3\U7801ITX)\U65d7\U4e0b\U7684\U4e00\U4e2a\U5b50\U516c\U53f8\Uff0c\U5b83\U65e2\U662f\U670d\U88c5\U54c1\U724c\Uff0c\U4e5f\U662f\U4e13\U8425ZARA\U54c1\U724c\U670d\U88c5\U7684\U8fde\U9501\U96f6\U552e\U54c1\U724c\U30021975\U5e74\U8bbe\U7acb\U4e8e\U897f\U73ed\U7259\U7684ZARA\U96b6\U5c5e\U4e8eInditex\U96c6\U56e2\U4e3a\U5168\U7403\U6392\U540d\U7b2c\U4e09\U3001\U897f\U73ed\U7259\U6392\U540d\U7b2c\U4e00\U7684\U670d\U88c5\U5546\Uff0c\U5728\U4e16\U754c\U5404\U573056\U4e2a\U56fd\U5bb6\U5185\Uff0c\U8bbe\U7acb\U8d85\U8fc7\U4e24\U5343\U591a\U5bb6\U7684\U670d\U88c5\U8fde\U9501\U5e97\U3002ZARA\U6df1\U53d7\U5168\U7403\U65f6\U5c1a\U9752\U5e74\U7684\U559c\U7231\Uff0c\U8bbe\U8ba1\U5e08\U54c1\U724c\U7684\U4f18\U5f02\U8bbe\U8ba1\U4ef7\U683c\U5374\U66f4\U4e3a\U4f4e\U5ec9\Uff0c\U7b80\U5355\U6765\U8bf4\U5c31\U662f\U8ba9\U5e73\U6c11\U62e5\U62b1High Fashion\U3002";
+            follow = 0;
+            id = 6;
+            img = "/images/e2dc0b8c42a051b6bf8e057b2f038704.png";
+            item = 0;
+            letter = ZARA;
+            logo = "/images/1fd27c742affe1b2974401a466650264.png";
+            name = ZARA;
+            point = 0;
+            position = "";
+            priority = 100;
+            status = active;
+            topic = 0;
+        };
+        brandLogo = "<null>";
+        brandName = "<null>";
+        description = "\U725b\U4ed4\U62fc\U63a5 T \U6064\Uff1b\U4eff\U76ae\U53e3\U888b\Uff0c\U5bbd\U677e\U8212\U9002\U3002
+\n\U6a21\U7279\U8eab\U9ad8\Uff1a187 \U5398\U7c73\U3002L \U7801
+\n\U9762\U6599
+\n98% \U68c9, 2% \U6c28\U7eb6
+\n* \U88c5\U9970\U54c1\U9664\U5916";
+        follow = 0;
+        id = 3385;
+        img = "/images/ac78261c16a605e643d5633c622d1dd4.jpg";
+        img1 = "<null>";
+        isDiscount = 0;
+        isShow = 1;
+        isZouItem = 0;
+        name = "\U4eff\U76ae\U62fc\U63a5\U53e3\U888b\U4e39\U5b81\U886c\U886b";
+        offPrice = "299.00";
+        online = 1;
+        price = "299.00";
+        priority = 0;
+        properties = "17,37,40,47,69";
+        range = 0;
+        sellOut = 0;
+        "sex_id" = 1;
+        size = m;
+        stock = 84;
+        stores = "";
+        "sub_Categories" = 1;
+        updateTime = 1446207572000;
+        url = "http://www.zara.cn/cn/zh/%E6%9C%AC%E5%91%A8%E6%96%B0%E5%93%81/%E7%94%B7%E5%A3%AB/%E6%9F%A5%E7%9C%8B%E5%85%A8%E9%83%A8/%E6%8B%BC%E6%8E%A5%E4%B8%B9%E5%AE%81%E8%A1%AC%E8%A1%AB-c758514p3084553.html";
+        useType = 0;
+    };
+    logistics = "<null>";
+    "order_No" = 2652877890953216;
+    payTime = "<null>";
+    remarks = 123;
+    size = M;
+    status = 0;
+    total = 30900;
+}
