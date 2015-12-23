@@ -36,9 +36,9 @@
     if (location.query.code) {
         getOpenIDbyCode();
     } else if (!App.WX_OPENID || App.WX_OPENID == 'undefined') {
-        Amour.storage.set('WX_OPENID', 'oQyIgtyKQH-8irY-H_JVwIdMWK4E');
-        location.reload();
-        return;
+        // Amour.storage.set('WX_OPENID', 'oQyIgtyKQH-8irY-H_JVwIdMWK4E');
+        // location.reload();
+        // return;
         if (/^\/order\/?$/.test(location.pathname)) {
             authWechat();
         }
