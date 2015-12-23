@@ -8,7 +8,8 @@
 
     var order = new (Amour.Model.extend({
         submitOrder: function() {
-            var amount = (product.get('offPrice') || product.get('price')) * this.get('count') * 100 + 10 * 100;
+            var price = product.get('isDiscount') ? product.get('offPrice') : product.get('price');
+            var amount = price * this.get('count') * 100 + 10 * 100;
             this.set({
                 subject: product.get('name'),
                 body: product.get('name'),

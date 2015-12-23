@@ -1,7 +1,6 @@
 (function() {
 
     App.WX_OPENID = Amour.storage.get('WX_OPENID');
-    // App.WX_OPENID = 'oQyIgtyKQH-8irY-H_JVwIdMWK4E';
 
     var authWechat = function() {
         var redirect_uri = location.href;
@@ -26,15 +25,20 @@
         }, function(data) {
             console.log(data);
             alert(JSON.stringify(data));
-            App.WX_OPENID = data.openid;
-            Amour.storage.set('WX_OPENID', data.openid);
-            location.search = '';
+            if (data.openid) {
+                App.WX_OPENID = data.openid;
+                Amour.storage.set('WX_OPENID', data.openid);
+                location.search = '';
+            }
         });
     };
 
     if (location.query.code) {
         getOpenIDbyCode();
-    } else if (!App.WX_OPENID) {
+    } else if (!App.WX_OPENID || App.WX_OPENID == 'undefined') {
+        Amour.storage.set('WX_OPENID', 'oQyIgtyKQH-8irY-H_JVwIdMWK4E');
+        location.reload();
+        return;
         if (/^\/order\/?$/.test(location.pathname)) {
             authWechat();
         }
