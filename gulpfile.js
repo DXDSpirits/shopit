@@ -99,12 +99,12 @@ gulp.task('styles', function() {
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
-    return gulp.src('app/**/*.html')
+    return gulp.src('app/*.html')
         .pipe($.useref({
             searchPath: '{.tmp,app}'
         }))
         // Concatenate and minify JavaScript
-        .pipe($.if(['*.js', '!scripts/forge.min.js'], $.uglify({
+        .pipe($.if(['*.js'], $.uglify({
             preserveComments: 'some'
         })))
         // Remove any unused CSS
@@ -112,8 +112,7 @@ gulp.task('html', function() {
         //       the next line to only include styles your project uses.
         .pipe($.if('*.css', $.uncss({
             html: [
-                'app/index.html',
-                'app/order/index.html'
+                'app/index.html'
             ],
             // CSS Selectors for UnCSS to ignore
             ignore: [/.img/]
@@ -127,6 +126,39 @@ gulp.task('html', function() {
         .pipe($.if('*.html', $.minifyHtml()))
         // Output files
         .pipe(gulp.dest('dist'))
+        .pipe($.size({
+            title: 'html'
+        }));
+});
+
+gulp.task('htmlOrder', function() {
+    return gulp.src('app/order/*.html')
+        .pipe($.useref({
+            searchPath: 'app/order'
+        }))
+        // Concatenate and minify JavaScript
+        .pipe($.if(['*.js', '!scripts/forge.min.js'], $.uglify({
+            preserveComments: 'some'
+        })))
+        // Remove any unused CSS
+        // Note: if not using the Style Guide, you can delete it from
+        //       the next line to only include styles your project uses.
+        .pipe($.if('*.css', $.uncss({
+            html: [
+                'app/order/index.html'
+            ],
+            // CSS Selectors for UnCSS to ignore
+            ignore: [/.img/]
+        })))
+        // Concatenate and minify styles
+        // In case you are still using useref build blocks
+        .pipe($.if('*.css', $.csso()))
+        // Update production Style Guide paths
+        // .pipe($.replace('components/components.css', 'components/main.min.css'))
+        // Minify any HTML
+        .pipe($.if('*.html', $.minifyHtml()))
+        // Output files
+        .pipe(gulp.dest('dist/order'))
         .pipe($.size({
             title: 'html'
         }));
@@ -172,8 +204,8 @@ gulp.task('serve:dist', ['default'], function() {
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function(cb) {
-    // runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
-    runSequence('styles', ['html', 'images', 'fonts', 'copy'], cb);
+    // runSequence('styles', ['jshint', 'html', 'htmlOrder', 'images', 'fonts', 'copy'], cb);
+    runSequence('styles', ['html', 'htmlOrder', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
