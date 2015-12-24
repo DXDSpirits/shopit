@@ -1,15 +1,15 @@
 (function() {
 
     var BrandModel = Amour.Model.extend({
-        url: Amour.APIRoot + 'beacon/data/getBrand.do'
+        url: Amour.APIRoot + 'shopit/data/getBrand.do'
     });
 
     var ProductsCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listItemByBid.do'
+        url: Amour.APIRoot + 'shopit/data/listItemByBid.do'
     });
 
     var TopicsCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listTopicByBid.do'
+        url: Amour.APIRoot + 'shopit/data/listTopicByBid.do'
     });
 
     var BrandView = Amour.ModelView.extend({

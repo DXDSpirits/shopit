@@ -64,10 +64,10 @@
             var id, url;
             if (this.options.brandId) {
                 id = this.options.brandId;
-                url = Amour.APIRoot + 'beacon/data/listBrandStores.do';
+                url = Amour.APIRoot + 'shopit/data/listBrandStores.do';
             } else {
                 id = this.options.productId;
-                url = Amour.APIRoot + 'beacon/data/listStoresByItemid.do';
+                url = Amour.APIRoot + 'shopit/data/listStoresByItemid.do';
             }
             this.address.fetch({
                 dataType: 'jsonp',

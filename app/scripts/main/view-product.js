@@ -3,15 +3,15 @@
     var mediaSize = 9;
 
     var ProductModel = Amour.Model.extend({
-        url: Amour.APIRoot + 'beacon/data/getItemBycityName.do'
+        url: Amour.APIRoot + 'shopit/data/getItemBycityName.do'
     });
 
     var ProductSimilarCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listSameCategoryItemsByid.do'
+        url: Amour.APIRoot + 'shopit/data/listSameCategoryItemsByid.do'
     });
 
     var ProductBrandCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listItemByBid.do'
+        url: Amour.APIRoot + 'shopit/data/listItemByBid.do'
     });
 
     var ProductView = Amour.ModelView.extend({

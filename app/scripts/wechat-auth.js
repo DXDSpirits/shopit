@@ -20,7 +20,7 @@
 
     var getOpenIDbyCode = function() {
         var code = location.query.code;
-        var url = Amour.APIRootSecure + 'beacon/pay/getopenIdByWx.do';
+        var url = Amour.APIRootSecure + 'shopit/pay/getopenIdByWx.do';
         App.securePost(url, {
             code: code
         }, function(data) {

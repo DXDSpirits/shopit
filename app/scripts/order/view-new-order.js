@@ -18,7 +18,7 @@
             }, {
                 silent: true
             });
-            var url = Amour.APIRootSecure + 'beacon/pay/submitOrderByWx.do';
+            var url = Amour.APIRootSecure + 'shopit/pay/submitOrderByWx.do';
             App.securePost(url, this.toJSON(), function(data) {
                 console.log(data);
                 App.router.navigate('order');
@@ -32,11 +32,11 @@
     });
 
     var product = new (Amour.Model.extend({
-        url: Amour.APIRoot + 'beacon/data/getItemBycityName.do'
+        url: Amour.APIRoot + 'shopit/data/getItemBycityName.do'
     }))();
 
     var addresses = new (Amour.Collection.extend({
-        url: Amour.APIRootSecure + 'beacon/um/listAddressByWx.do?openId=' + App.WX_OPENID
+        url: Amour.APIRootSecure + 'shopit/um/listAddressByWx.do?openId=' + App.WX_OPENID
     }))();
 
     var OrderInputView = Amour.ModelView.extend({ model: order });
@@ -209,13 +209,13 @@
                 var addressModel = new Amour.Model();
                 var queryString = encodeQueryString(addressData);
                 addressModel.save({}, {
-                    url: Amour.APIRootSecure + 'beacon/um/updateAddressByWx.do?' + queryString,
+                    url: Amour.APIRootSecure + 'shopit/um/updateAddressByWx.do?' + queryString,
                 });
             } else {
                 var addressModel = new Amour.Model(addressData);
                 var queryString = encodeQueryString(addressData);
                 addressModel.save({}, {
-                    url: Amour.APIRootSecure + 'beacon/um/addAddressByWx.do?' + queryString,
+                    url: Amour.APIRootSecure + 'shopit/um/addAddressByWx.do?' + queryString,
                     success: function() {
                         addresses.fetch({ reset: true })
                     }
@@ -229,7 +229,7 @@
                 this.editing = null;
                 var addressModel = new Amour.Model();
                 addressModel.save({}, {
-                    url: Amour.APIRootSecure + 'beacon/um/deleteAddressByWx.do?id=' + id,
+                    url: Amour.APIRootSecure + 'shopit/um/deleteAddressByWx.do?id=' + id,
                     success: function() {
                         addresses.fetch({ reset: true })
                     }

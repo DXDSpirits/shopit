@@ -23,7 +23,7 @@
         },
         render: function() {
             var orderId = this.options.orderId;
-            var url = Amour.APIRootSecure + 'beacon/pay/getOrderDetailByWx.do';
+            var url = Amour.APIRootSecure + 'shopit/pay/getOrderDetailByWx.do';
             App.securePost(url, {
                 id: orderId
             }, function(data) {

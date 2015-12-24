@@ -28,7 +28,7 @@
             })
         },
         render: function() {
-            var url = Amour.APIRootSecure + 'beacon/pay/getOrderListByWx.do';
+            var url = Amour.APIRootSecure + 'shopit/pay/getOrderListByWx.do';
             App.securePost(url, {
                 openId: App.WX_OPENID
             }, function(data) {

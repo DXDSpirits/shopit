@@ -1,7 +1,7 @@
 (function() {
 
     var CommentsCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/getAllCommentByTopic.do'
+        url: Amour.APIRoot + 'shopit/data/getAllCommentByTopic.do'
     });
 
     var CommentsListView = Amour.CollectionView.extend({

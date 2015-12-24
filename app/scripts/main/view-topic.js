@@ -1,15 +1,15 @@
 (function() {
 
     var TopicModel = Amour.Model.extend({
-        url: Amour.APIRoot + 'beacon/admin/getTopic.do'
+        url: Amour.APIRoot + 'shopit/admin/getTopic.do'
     });
 
     var ProductsCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/listItemByTid.do'
+        url: Amour.APIRoot + 'shopit/data/listItemByTid.do'
     });
 
     var CommentsCollection = Amour.Collection.extend({
-        url: Amour.APIRoot + 'beacon/data/getAllCommentByTopic.do'
+        url: Amour.APIRoot + 'shopit/data/getAllCommentByTopic.do'
     });
 
     var TopicView = Amour.ModelView.extend({
