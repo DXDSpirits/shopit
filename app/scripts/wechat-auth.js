@@ -26,7 +26,7 @@
         }, function(data) {
             console.log(data);
             // alert(JSON.stringify(data));
-            if (data.code == 1 && data.response && data.response.openid) {
+            if (+data.code == 1 && data.response && data.response.openid) {
                 var openid = data.response.openid;
                 App.WX_OPENID = openid;
                 Amour.storage.set('WX_OPENID', openid);

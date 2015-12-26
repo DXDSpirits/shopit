@@ -8,6 +8,7 @@
 
     var order = new (Amour.Model.extend({
         payOrder: function(charge) {
+            console.log(charge);
             pingpp.createPayment(charge, function(result, error){
                 if (result == "success") {
                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
@@ -33,7 +34,7 @@
             var url = Amour.APIRootSecure + 'shopit/pay/submitOrderByWx.do';
             App.securePost(url, this.toJSON(), function(data) {
                 console.log(data);
-                if (data.code == 1) {
+                if (+data.code == 1 && data.response.charge) {
                     var charge = data.response.charge;
                     this.payOrder(charge);
                 } else {
