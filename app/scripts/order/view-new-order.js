@@ -7,6 +7,18 @@
     };
 
     var order = new (Amour.Model.extend({
+        payOrder: function(charge) {
+            pingpp.createPayment(charge, function(result, error){
+                if (result == "success") {
+                    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
+                    App.router.navigate('order');
+                } else if (result == "fail") {
+                    alert('支付失败');
+                } else if (result == "cancel") {
+                    history.back();
+                }
+            });
+        },
         submitOrder: function() {
             var price = product.get('isDiscount') ? product.get('offPrice') : product.get('price');
             var amount = price * this.get('count') * 100 + 10 * 100;
@@ -21,8 +33,13 @@
             var url = Amour.APIRootSecure + 'shopit/pay/submitOrderByWx.do';
             App.securePost(url, this.toJSON(), function(data) {
                 console.log(data);
-                App.router.navigate('order');
-            });
+                if (data.code == 1) {
+                    var charge = data.response.charge;
+                    this.payOrder(charge);
+                } else {
+                    alert('订单错误');
+                }
+            }, this);
         }
     }))({
         openId: App.WX_OPENID,
