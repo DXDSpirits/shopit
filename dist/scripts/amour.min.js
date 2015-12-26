@@ -39,8 +39,12 @@
 
     var Amour = window.Amour = {
         version: '1.0',
-        APIRoot: 'http://123.57.253.146/',
-        APIRootSecure: 'http://43.241.221.97:81/',
+        // APIRoot: 'http://123.57.253.146/',
+        // APIRootSecure: 'http://43.241.221.97:81/',
+        // APIRoot: 'http://ishopitapp.com/',
+        // APIRootSecure: 'http://ishopitapp.com/',
+        APIRoot: 'http://shopit.oatpie.com/',
+        APIRootSecure: 'http://shopit.oatpie.com/',
         StaticURL: '/'
     };
 
