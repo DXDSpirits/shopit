@@ -1,7 +1,6 @@
 (function() {
 
-    // App.WX_OPENID = Amour.storage.get('WX_OPENID');
-    App.WX_OPENID = location.query.openid;
+    App.WX_OPENID = Amour.storage.get('WX_OPENID') || location.query.openid;
 
     var authWechat = function() {
         var redirect_uri = encodeURIComponent(location.href);
@@ -30,7 +29,8 @@
                 var openid = data.response.openid;
                 App.WX_OPENID = openid;
                 Amour.storage.set('WX_OPENID', openid);
-                location.search = '?openid=' + openid;
+                var href = location.href.split('?')[0] + ('?openid=' + openid);
+                location.replace(href);
             }
         });
     };

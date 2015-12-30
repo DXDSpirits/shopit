@@ -14,12 +14,37 @@
     });
 
     App.Pages.OrderDetail = new (App.PageView.extend({
+        events: {
+            'click .btn-purchase': 'readyToPay'
+        },
         initPage: function() {
             this.order = new Amour.Model();
             this.orderView = new OrderView({
                 model: this.order,
                 el: this.$('.order-detail')
             });
+        },
+        payOrder: function(charge) {
+            console.log(charge);
+            pingpp.createPayment(charge, function(result, error){
+                if (result == "success") {
+                    location.reload();
+                } else if (result == "fail") {
+                    alert('支付失败');
+                } else if (result == "cancel") {
+                    alert('取消');
+                }
+            });
+        },
+        readyToPay: function() {
+            var url = Amour.APIRootSecure + 'shopit/pay/payByWx.do';
+            App.securePost(url, {
+                id: this.order.get('id'),
+                order_No: this.order.get('order_No')
+            }, function(data) {
+                console.log(data);
+                this.payOrder(data);
+            }, this);
         },
         render: function() {
             var orderId = this.options.orderId;

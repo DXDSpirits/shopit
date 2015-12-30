@@ -282,7 +282,8 @@
             this.$('.input-content').text(_.findWhere(this.channels, {name: channel}).title);
         }
     }))({
-        el: $('#order-input-payment')
+        // el: $('#order-input-payment')
+        // Disabled
     });
 
     var remarkView = new (OrderInputView.extend({
