@@ -23,6 +23,7 @@
         submitOrder: function() {
             if (!order.get('address_id')) {
                 alert('请确认订单信息是否完整');
+                return;
             }
             var price = product.get('isDiscount') ? product.get('offPrice') : product.get('price');
             var amount = price * this.get('count') * 100 + 10 * 100;
