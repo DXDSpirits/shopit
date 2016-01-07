@@ -15,7 +15,12 @@
     });
 
     var ProductView = Amour.ModelView.extend({
-        template: App.getTemplate('product-detail')
+        template: App.getTemplate('product-detail'),
+        serializeData: function() {
+            var data = this.model.toJSON();
+            data.images = data.img1.split(',');
+            return data;
+        }
     });
 
     var MediasListView = Amour.CollectionView.extend({
@@ -55,6 +60,25 @@
         viewStores: function() {
             App.router.navigate(['product', this.product.id, 'address'].join('/'));
         },
+        carousel: function() {
+            var self = this;
+            var $cur = this.$('.carousel-item.active');
+            var $next = $cur.next();
+            if (!$next.length) {
+                $next = $($cur.siblings()[0]);
+            }
+            $next.removeClass('invisible').addClass('active');
+            $cur.removeClass('active');
+            setTimeout(function() {
+                $cur.addClass('invisible');
+            }, 500);
+            this.carouselTimer = setTimeout(function() {
+                self.carousel();
+            }, 2000);
+        },
+        leave: function() {
+            clearTimeout(this.carouselTimer);
+        },
         render: function() {
             var productId = this.options.productId;
             var self = this;
@@ -62,6 +86,7 @@
                 dataType: 'jsonp',
                 data: { id: productId },
                 success: function(model) {
+                    self.carousel();
                     var brandId = self.product.get('brand').id;
                     self.brandProducts.fetch({
                         dataType: 'jsonp',

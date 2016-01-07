@@ -122,7 +122,13 @@
     <!-- Templates -->
 
     <script id="template-product-detail" type="text/x-handlebars-template">
-        <div class="img cover" data-bg-src="{{apiFullpath img}}">
+        <div class="cover" data-bg-src="{{apiFullpath img}}">
+            <div class="carousel">
+                {{#list images}}
+                <div class="img carousel-item {{#eq @index 0}}active{{else}}invisible{{/eq}}"
+                    data-bg-src="{{apiFullpath this}}"></div>
+                {{/list}}
+            </div>
             <div class="img brand-logo" data-bg-src="{{apiFullpath brand.logo}}" data-route="brand/{{brand.id}}"></div>
         </div>
         <div class="container-fluid">
