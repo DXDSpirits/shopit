@@ -198,4 +198,10 @@ $wrapper-bg: #f4f4f4;
             background-size: auto 5px;
         }
     }
+    article {
+        white-space: pre;
+        word-break: break-all;
+        word-wrap: break-word;
+        line-height: 1.7;
+    }
 }

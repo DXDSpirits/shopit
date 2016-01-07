@@ -2,6 +2,16 @@
 #view-product {
     .product-wrapper {
         margin-bottom: 1px;
+        .name {
+            margin-right: 55px;
+            line-height: 1.2;
+        }
+        .description {
+            white-space: pre;
+            word-break: break-all;
+            word-wrap: break-word;
+            line-height: 1.7;
+        }
         .cover {
             padding-top: percentage(960/750);
             position: relative;

@@ -25,6 +25,10 @@
         }
         .description {
             color: #999;
+            white-space: pre;
+            word-break: break-all;
+            word-wrap: break-word;
+            line-height: 1.7;
         }
         .comment, .share {
             display: inline-block;
