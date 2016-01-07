@@ -50,11 +50,11 @@
     }
     .more {
         cursor: pointer;
-        position: absolute;
-        bottom: 0;
-        right: 3px;
+        // position: absolute;
+        // bottom: 0;
+        // right: 3px;
         color: $brand-success;
-        display: hidden;
+        display: none;
         padding-top: 3px;
         padding-right: 12px;
         background-repeat: no-repeat;

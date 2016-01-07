@@ -21,7 +21,15 @@
             Amour.ModelView.prototype.render.call(this);
             var h = this.$('.description').height();
             if (h > 50) {
-                var desc = this.model.get('description').substr(0, $(window).width() / 10);
+                var count = $(window).width() / 10;
+                var description = this.model.get('description');
+                var desc = '';
+                for (var i=0; i<description.length; i++) {
+                    var c = description[i];
+                    desc += c;
+                    count -= c.charCodeAt() < 256 ? 0.5 : 1;
+                    if (count <= 0) break;
+                }
                 this.$('.desc').text(desc + ' ......');
                 this.$('.description').addClass('ellipsis');
             }
