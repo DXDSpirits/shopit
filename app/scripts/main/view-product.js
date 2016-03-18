@@ -18,7 +18,7 @@
         template: App.getTemplate('product-detail'),
         serializeData: function() {
             var data = this.model.toJSON();
-            data.images = data.img1.split(',');
+            data.images = data.img1 ? data.img1.split(',') : [data.img];
             return data;
         }
     });
@@ -61,6 +61,9 @@
             App.router.navigate(['product', this.product.id, 'address'].join('/'));
         },
         carousel: function() {
+            if (this.$('.carousel-item').length <= 1) {
+                return;
+            }
             var self = this;
             var $cur = this.$('.carousel-item.active');
             var $next = $cur.next();
@@ -83,20 +86,20 @@
             var productId = this.options.productId;
             var self = this;
             this.product.fetch({
-                dataType: 'jsonp',
+                // dataType: 'jsonp',
                 data: { id: productId },
                 success: function(model) {
                     self.carousel();
                     var brandId = self.product.get('brand').id;
                     self.brandProducts.fetch({
-                        dataType: 'jsonp',
+                        // dataType: 'jsonp',
                         data: { id: brandId, start: 0, size: mediaSize }
                     });
                     self.$('.store').toggleClass('hidden', model.get('online') == 1);
                 }
             });
             this.similarProducts.fetch({
-                dataType: 'jsonp',
+                // dataType: 'jsonp',
                 data: { id: productId, size: mediaSize }
             });
         }
